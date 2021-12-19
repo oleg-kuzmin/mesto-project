@@ -1,0 +1,20 @@
+.profile__vector {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  position: absolute;
+  top: 28%;
+  bottom: 28%;
+  left: 42%;
+  right: 42%;
+}
+@media screen and (max-width: 635px) {
+  .profile__vector {
+    width: 16px;
+    height: 16px;
+    top: 34%;
+    bottom: 34%;
+    left: 47%;
+    right: 47%;
+  }
+}

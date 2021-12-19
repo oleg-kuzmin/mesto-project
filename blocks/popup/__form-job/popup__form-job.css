@@ -1,0 +1,20 @@
+.popup__form-job {
+  width: 358px;
+  border: solid rgba(0, 0, 0, .2);
+  border-width: 0 0 1px 0;
+  padding: 12px 0; /*? в фигме 13px, но сам border со значением 0, чтобы сошлись размеры popup выставил 12px */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  height: 14px;
+  /*
+  ? пришлось выставить высоту, в фигме буквы вылезают за края, 
+  ? если этого не сделать popup становится по высоте больше, чем нужно. Так можно сделать?
+  */
+}
+@media screen and (max-width: 597px) {
+  .popup__form-job {
+    width: 238px;
+  }
+}
