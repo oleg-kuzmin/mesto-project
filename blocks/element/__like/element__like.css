@@ -4,7 +4,7 @@
   background-color: rgba(0, 0, 0 , 0);
   background-image: url('../../../images/like.svg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   cursor: pointer;
   transition: .5s;
 }
