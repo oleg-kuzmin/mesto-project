@@ -11,10 +11,9 @@
 
   <header class="header">
     <img class="header__logo" src="./images/logo.svg" alt="Mesto-Russia">
-    <div class="header__line"></div>
   </header> <!--header-->
   
-  <main>
+  <main>    
     <section class="profile">
       <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
       <div class="profile__profile-info">
@@ -22,95 +21,73 @@
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
         </div> <!--profile__text-->
-        <a class="profile__edit-button" href="#popup">
-          <img src="./images/edit-button.svg" alt="Редактирование профиля">
-        </a> 
-      </div> <!--profile__edit-button-->
-      <a class="profile__add-button" href="#">
-        <img class="profile__vector" src="./images/vector.svg" alt="Добавить профиль">
-      </a> <!--profile__add-button-->      
+        <button class="profile__edit-button" type="button"></button>
+      </div> <!--profile__profile-info-->
+      <button class="profile__add-button" type="button"></button>
     </section> <!--profile-->
 
     <section class="mesto">
       <ul class="elements">
-        <li>
-          <div class="element">
-            <img class="element__mask-group" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Место">
-            <div class="element__text">
-              <h2 class="element__title">Карачаевск</h2>
-              <a class="element__like element__like_active" href="#"></a>
-            </div>
+        <li class="element">
+          <img class="element__mask-group" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Место">
+          <div class="element__text">
+            <h2 class="element__title">Карачаевск</h2>
+            <button class="element__like element__like_active" type="button"></button>
           </div>
         </li> <!--element-->
     
-        <li>
-          <div class="element">
-            <img class="element__mask-group" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Место">
-            <div class="element__text">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <a class="element__like" href="#"></a>
-            </div>
+        <li class="element">
+          <img class="element__mask-group" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Место">
+          <div class="element__text">
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </li> <!--element-->
 
-        <li>
-          <div class="element">
-            <img class="element__mask-group" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Место">
-            <div class="element__text">
-              <h2 class="element__title">Домбай</h2>
-              <a class="element__like" href="#"></a>
-            </div>
+        <li class="element">
+          <img class="element__mask-group" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Место">
+          <div class="element__text">
+            <h2 class="element__title">Домбай</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </li> <!--element-->
 
-        <li>
-          <div class="element">
-            <img class="element__mask-group" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Место">
-            <div class="element__text">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <a class="element__like" href="#"></a>
-            </div>
+        <li class="element">
+          <img class="element__mask-group" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Место">
+          <div class="element__text">
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </li> <!--element-->
 
-        <li>
-          <div class="element">
-            <img class="element__mask-group" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Место">
-            <div class="element__text">
-              <h2 class="element__title">Домбай</h2>
-              <a class="element__like" href="#"></a>
-            </div>
+        <li class="element">
+          <img class="element__mask-group" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Место">
+          <div class="element__text">
+            <h2 class="element__title">Домбай</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </li> <!--element-->
 
-        <li>
-          <div class="element">
-            <img class="element__mask-group" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Место">
-            <div class="element__text">
-              <h2 class="element__title">Карачаево-Черкесия</h2>
-              <a class="element__like" href="#"></a>
-            </div>
+        <li class="element">
+          <img class="element__mask-group" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Место">
+          <div class="element__text">
+            <h2 class="element__title">Карачаевск</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </li> <!--element-->
       </ul> <!--elements-->
     </section> <!--mesto-->
   </main>
   
-  <div class="popup" id="popup"> <!--class="popup popup_opened"-->
+  <div class="popup" id="popup">
     <div class="popup__container">
-      <div class="popup__content">
-        <a class="popup__button-close" href="#" >
-          <img  class="popup__close" src="./images/close-icon.svg" alt="закрыть">
-        </a> <!--popup__button-close-->
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form" action="#" >
-          <input class="popup__form-name" type="text" name="popup__form-name" id="popup__form-name" value="Жак-Ив Кусто">
-          <input class="popup__form-job" type="text" name="popup__form-job" id="popup__form-job" value="Исследователь океана">
-          <button class="popup__button-save" type="submit">
-            <span class="popup__save">Сохранить</span>
-          </button> <!--popup__button-save-->
-        </form> <!--popup__form-->
-      </div> <!--popup__content-->
+      <button class="popup__button-close" type="button"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__form" name="profile" action="#">
+        <input class="popup__form-input" type="text" name="profile-name" id="profile-name" value="Жак-Ив Кусто">
+        <input class="popup__form-input" type="text" name="profile-job" id="profile-job" value="Исследователь океана">
+        <button class="popup__button-save" type="submit">Сохранить</button>
+      </form> <!--popup__form-->
     </div> <!--popup__container-->
   </div> <!--popup-->
 

@@ -1,8 +1,10 @@
 .header {
   margin: 0;
   padding-top: 45px;
+  border: solid rgba(84, 84, 84, .7);
+  border-width: 0 0 1px;
 }
-@media screen and (max-width: 879px){
+@media screen and (max-width: 940px){
   .header {
     padding-top: 28px;
   }

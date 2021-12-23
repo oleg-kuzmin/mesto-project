@@ -8,16 +8,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  transition: .5s;
 }
 .popup__button-save:hover {
   background-color: rgba(0, 0, 0, .8);
   cursor: pointer;
-  transition: background-color .5s;
 }
-@media screen and (max-width: 597px) {
+@media screen and (max-width: 579px) {
   .popup__button-save{
     width: 238px;
-    margin-top: 45px;
+    height: 46px;
+    margin-top: 44px;
     margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

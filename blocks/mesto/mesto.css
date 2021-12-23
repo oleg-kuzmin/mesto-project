@@ -1,4 +1,9 @@
 .mesto {
   margin: 0 auto;
-  padding-top: 47.25px;
+  padding-top: 51px;
+}
+@media screen and (max-width: 710px) {
+  .mesto {
+    padding-top: 36px;
+  }
 }

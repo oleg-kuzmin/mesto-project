@@ -2,14 +2,9 @@
   margin: 0;
   display: flex;
 }
-@media screen and (max-width: 635px) {
+@media screen and (max-width: 710px) {
   .profile__profile-info {
     justify-content: center;
-    padding-left: 42px;
-  }
-}
-@media screen and (max-width: 365px) {
-  .profile__profile-info {
     padding-left: 28px;
   }
 }
