@@ -22,4 +22,4 @@
 
 **Github**
 
-* [Ссылка на Github](https://alex-dust.github.io/mesto-project/)
+* [Ссылка на Github](https://alex-dust.github.io/mesto-project)
