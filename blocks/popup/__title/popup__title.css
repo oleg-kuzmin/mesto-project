@@ -9,10 +9,7 @@
   .popup__title {
     font-size: 18px;
     line-height: 22px;
-    margin-top: 26px; /*26*/
-    margin-left: 0;
-    margin-right: 8px;
-    margin-bottom: 66px;
-    text-align: center;
+    text-align: left;
+    margin: 26px 0 66px 22px;
   }
 }
