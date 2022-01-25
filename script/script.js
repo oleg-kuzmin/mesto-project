@@ -69,6 +69,7 @@ const placeUrl = document.querySelector('#placeUrl');
 // модальное окно popupImage
 const popupImage = document.querySelector('#popup-image');  
 const imageCloseButton = document.querySelector('#popup-image-close');
+const popupImageFigure = document.querySelector('.popup__image');
 const popupImageCaption = document.querySelector('.popup__image-caption');
 
 // нажатие на кнопку закрытия popupImage
@@ -91,10 +92,11 @@ function createCard(item) {
     cardElement.remove();
   });
   // обработчик - функция нажатия на картинку
-  cardElement.querySelector('.element__image').addEventListener('click', function () {
+  cardImage.addEventListener('click', function () {
     openPopup(popupImage);
-    popupImage.querySelector('.popup__image').src = cardImage.src;
-    popupImage.querySelector('.popup__image-caption').textContent = item['placeName'];
+    popupImageFigure.src = cardImage.src;
+    popupImageFigure.alt = cardImage.alt;
+    popupImageCaption.textContent = item['placeName'];
   });
   return cardElement
 };
@@ -111,7 +113,7 @@ placeForm.addEventListener('submit', savePlace);
 // submit placeForm
 function savePlace(evt) {
   evt.preventDefault();
-  item = {};
+  const item = {};
   item['placeName'] = placeName.value;
   item['placeUrl'] = placeUrl.value;
   prependCard(item);
@@ -147,7 +149,5 @@ const initialCards = [
   }
   ];
 
-// функция добавления всех стартовых карточек
-initialCards.forEach(function(item) {
-  prependCard(item);
-});
+// добавление всех стартовых карточек
+initialCards.forEach(prependCard);
