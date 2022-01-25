@@ -1,9 +1,9 @@
-.mesto {
+.place {
   margin: 0 auto;
   padding-top: 51px;
 }
 @media screen and (max-width: 710px) {
-  .mesto {
+  .place {
     padding-top: 36px;
   }
 }
