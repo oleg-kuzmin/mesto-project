@@ -26,9 +26,9 @@
       <button class="profile__add-button" type="button"></button>
     </section> <!--profile-->
 
-    <div class="mesto">
+    <div class="place">
       <ul class="elements"></ul> <!--elements-->
-    </div> <!--mesto-->
+    </div> <!--place-->
   </main>
 
   <footer class="footer">
@@ -47,23 +47,23 @@
     </div>
   </div> <!--popup-profile-->
 
-  <div class="popup" id="popup-mesto">
+  <div class="popup" id="popup-place">
     <div class="popup__container">
-      <button class="popup__button-close" type="button" id="popup-mesto-close"></button>
+      <button class="popup__button-close" type="button" id="popup-place-close"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" name="popup__form-mesto" action="#" id="popup__form-mesto">
-        <input class="popup__form-input" type="text" name="mestoName" id="mestoName" value="" placeholder="Название">
-        <input class="popup__form-input" type="text" name="mestoUrl" id="mestoUrl" value="" placeholder="Ссылка на картинку">
-        <button class="popup__button-save" type="submit" id="popup-mesto-submit">Создать</button>
+      <form class="popup__form" name="popup__form-place" action="#" id="popup__form-place">
+        <input class="popup__form-input" type="text" name="placeName" id="placeName" value="" placeholder="Название">
+        <input class="popup__form-input" type="text" name="placeUrl" id="placeUrl" value="" placeholder="Ссылка на картинку">
+        <button class="popup__button-save" type="submit" id="popup-place-submit">Создать</button>
       </form>
     </div>
-  </div> <!--popup-mesto-->
+  </div> <!--popup-place-->
 
   <div class="popup popup_place-image" id="popup-image">
     <div class="popup__container-image">
       <figure class="popup__figure">
-        <img class="popup__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Место">
-        <figcaption class="popup__image-caption">Карачаево-Черкессия</figcaption>
+        <img class="popup__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+        <figcaption class="popup__image-caption"></figcaption>
       </figure>
       <button class="popup__button-close" type="button" id="popup-image-close"></button>
     </div>
@@ -72,7 +72,7 @@
   <template id="elementTemplate">
     <li class="element">
       <button class="element__delete-button"></button>
-      <img class="element__image" src="#" alt="Место">
+      <img class="element__image" src="#" alt="">
       <div class="element__text">
         <h2 class="element__title"></h2>
         <button class="element__like" type="button"></button>
