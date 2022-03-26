@@ -1,0 +1,21 @@
+.popup__input-error {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;  
+  color: #FF0000;  
+  margin: 0;
+  /*align-self: flex-start;*/
+  position: absolute;
+  left: 0;
+  top: 38px;
+  visibility: hidden;
+  z-index: 1;
+}
+
+@media screen and (max-width: 579px) {
+  .popup__input-error {
+    top: 38px;
+  }
+}
