@@ -19,7 +19,3 @@
 **Figma**
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5)
-
-**Github**
-
-* [Ссылка на Github Pages](https://alex-dust.github.io/mesto-project/)
