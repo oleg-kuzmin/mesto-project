@@ -19,6 +19,7 @@ import {
 } from './variables.js';
 
 import {validationConfig, hideInputError, submitDisabled} from './validate.js';
+import {prependCard} from './card.js';
 
 // универсальная функция открытия любого модального окна
 function openPopup(popup) {
