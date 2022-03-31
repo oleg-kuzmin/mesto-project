@@ -1,11 +1,9 @@
 import {
-  popup,
+  popups,
   popupProfile,
   popupPlace,
   profileEditButton,
-  profileCloseButton,
   placeAddButton,
-  placeCloseButton,
   profileForm,
   profileTitle,
   profileName,
@@ -14,43 +12,42 @@ import {
   placeForm,
   placeName,
   placeUrl,
-  popupImage,
-  imageCloseButton,
 } from './variables.js';
 
 import {validationConfig, hideInputError, submitDisabled} from './validate.js';
 import {prependCard} from './card.js';
 
+// обработчики - закрытие попапа при нажатии крестика или оверлея
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+        closePopup(popup)
+      }
+      if (evt.target.classList.contains('popup__button-close')) {
+        closePopup(popup);
+      }      
+  })
+})
+
+// функция закрытия попапа при нажатии на Esc
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
 // универсальная функция открытия любого модального окна
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 // универсальная функция закрытия любого модального окна
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
-
-// универсальная функция - закрытие всех модальных окон
-function closeAllPopup() {
-  popup.forEach((popup) => {
-    closePopup(popup);
-  });
-};
-
-// событие - нажатие на кнопку ESC при любом открытом модальном окне
-document.addEventListener('keydown', function(evt) {
-  if (evt.key === 'Escape') {
-    closeAllPopup()
-  }
-});
-
-// событие - нажатие на кнопку вне модального окна
-document.addEventListener('click', function(evt) {
-  if (evt.path.length <= 5) {
-    closeAllPopup()
-  }
-});
 
 // нажатие на кнопку редактирования popupProfile
 profileEditButton.addEventListener('click', function () {
@@ -61,11 +58,6 @@ profileEditButton.addEventListener('click', function () {
   const buttonElement = popupProfile.querySelector('.popup__button-save');
   submitDisabled(buttonElement, validationConfig.buttonElementDisabledName);
   openPopup(popupProfile);
-});
-
-// нажатие на кнопку закрытия popupProfile
-profileCloseButton.addEventListener('click', function () {
-  closePopup(popupProfile);
 });
 
 // нажатие на кнопку submit profileForm
@@ -88,17 +80,6 @@ placeAddButton.addEventListener('click', function () {
   const buttonElement = popupPlace.querySelector('.popup__button-save');
   submitDisabled(buttonElement, validationConfig.buttonElementDisabledName);
   openPopup(popupPlace);
-});
-
-// нажатие на кнопку закрытия popupPlace
-placeCloseButton.addEventListener('click', function () {
-  closePopup(popupPlace);
-});
-
-
-// нажатие на кнопку закрытия popupImage
-imageCloseButton.addEventListener('click', function () {
-  closePopup(popupImage)
 });
 
 // нажатие на кнопку submit placeForm
