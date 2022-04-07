@@ -14,7 +14,12 @@
   
   <main>    
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/custo.jpg')%>" alt="Аватар профиля">
+      
+      <div class="profile__avatar-container">
+        <img class="profile__avatar" src="<%=require('./images/custo.jpg')%>" alt="Аватар профиля">
+        <div class="profile__avatar-edit"></div>
+      </div>
+
       <div class="profile__info">
         <div class="profile__text">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -36,7 +41,7 @@
  
   <div class="popup" id="popup-profile">
     <div class="popup__container">
-      <button class="popup__button-close" type="button" id="popup-profile-close"></button>
+      <button class="popup__button-close" type="button"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form" name="popup__form-profile" action="#" id="popup__form-profile" novalidate>
         <div class="popup__input-container">
@@ -54,7 +59,7 @@
 
   <div class="popup" id="popup-place">
     <div class="popup__container">
-      <button class="popup__button-close" type="button" id="popup-place-close"></button>
+      <button class="popup__button-close" type="button"></button>
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form" name="popup__form-place" action="#" id="popup__form-place" novalidate>
         <div class="popup__input-container">
@@ -76,9 +81,23 @@
         <img class="popup__image" src="#" alt="">
         <figcaption class="popup__image-caption"></figcaption>
       </figure>
-      <button class="popup__button-close" type="button" id="popup-image-close"></button>
+      <button class="popup__button-close" type="button"></button>
     </div>
   </div> <!--popup-image-->
+
+  <div class="popup" id="popup-avatar">
+    <div class="popup__container">
+      <button class="popup__button-close" type="button"></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form" name="popup__form-avatar" action="#" id="popup__form-avatar" novalidate>
+        <div class="popup__input-container">
+          <input class="popup__input" type="url" name="avatarUrl" id="avatarUrl" placeholder="Ссылка на картинку" autocomplete="off" required>
+          <span class="popup__input-error avatarUrl-error"></span>
+        </div>
+        <button class="popup__button-save" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div> <!--popup-avatar-->
 
   <template id="elementTemplate">
     <li class="element">
