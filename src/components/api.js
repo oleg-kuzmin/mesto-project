@@ -82,6 +82,13 @@ function addCardToServer(item) {
   .then(onResponse)
 }
 
+const removeCardFromServer = (idCard) => {
+  return fetch(`${config.urlCards}${idCard}`, {
+    method: 'DELETE',
+    headers: config.headers,
+  })
+  .then(onResponse);
+};
 
 export {
   getAllCardsFromServer, 
@@ -89,5 +96,6 @@ export {
   profileId, 
   patchProfile,
   patchAvatar,
-  addCardToServer
+  addCardToServer,
+  removeCardFromServer
 };

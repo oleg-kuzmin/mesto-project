@@ -7,16 +7,11 @@ import {
 } from './variables.js';
 
 import {openPopup} from './modal.js';
-import {profileId} from './api';
+import {profileId, removeCardFromServer} from './api';
 
 // функция лайка карточки
 function likeCard(evt) {
   evt.target.classList.toggle('element__like_active');
-}
-
-// функция удаления карточки
-function deleteCard(evt) {
-  evt.target.closest('.element').remove();
 }
 
 // функция открытия попапа с картинкой
@@ -54,6 +49,16 @@ function appendCard(item) {
   const newElement = createCard(item)
   elements.append(newElement);
 };
+
+
+// функция удаления карточки
+function deleteCard(evt) {
+  const idCard = evt.target.closest('.element').id;
+  console.log(idCard);
+  removeCardFromServer(idCard).then(()=> {
+    evt.target.closest('.element').remove();
+  })
+}
 
 // установка обработчиков на любую карточку
 elements.addEventListener('click', function(evt) {
