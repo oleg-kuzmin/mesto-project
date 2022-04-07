@@ -9,25 +9,8 @@ const config = {
   },  
 }
 
-
-fetch(config.urlProfile, {headers: config.headers})
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    console.log(data);
-  })
-
-fetch(config.urlCards, {headers: config.headers})
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    console.log(data);
-  })  
-
 const onResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(res)
+  return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
 }
 
 function getAllCardsFromServer() {

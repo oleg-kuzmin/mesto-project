@@ -69,12 +69,6 @@ function deleteCard(evt) {
   })
 }
 
-
-
-
-
-
-
 // функция добавления лайка карточки
 function addLikeToDom(evt) {
   const idCard = evt.target.closest('.element').id;

@@ -152,9 +152,6 @@ function savePlace(evt) {
       evt.target.reset();
       closePopup(popupPlace);
     })
-
-  /*evt.target.reset();
-  closePopup(popupPlace);*/
 };
 
 export {openPopup, closePopup};
