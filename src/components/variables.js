@@ -21,32 +21,6 @@ const avatarForm = document.querySelector('#popup__form-avatar')
 const avatarUrl = document.querySelector('#avatarUrl');
 const avatarEditButton  = document.querySelector('.profile__avatar-edit');
 const avatarImage = document.querySelector('.profile__avatar');
-const initialCards = [
-  {
-    placeName: 'Архыз',
-    placeUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    placeName: 'Челябинская область',
-    placeUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    placeName: 'Иваново',
-    placeUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    placeName: 'Камчатка',
-    placeUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    placeName: 'Холмогорский район',
-    placeUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    placeName: 'Байкал',
-    placeUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 export {
   popups,
@@ -67,7 +41,6 @@ export {
   popupImage,
   popupImageFigure,
   popupImageCaption,
-  initialCards,
   popupAvatar,
   avatarForm,
   avatarUrl,

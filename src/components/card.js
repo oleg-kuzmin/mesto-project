@@ -3,8 +3,7 @@ import {
   elementTemplate,
   popupImage,
   popupImageFigure,
-  popupImageCaption,
-  initialCards
+  popupImageCaption
 } from './variables.js';
 
 import {openPopup} from './modal.js';
@@ -31,16 +30,24 @@ function openCardImage(evt) {
 function createCard(item) {
   const cardElement = elementTemplate.querySelector('.element').cloneNode(true);
   const cardImage = cardElement.querySelector('.element__image');
-  cardElement.querySelector('.element__title').textContent = item['placeName'];
-  cardImage.src = item['placeUrl'];
-  cardImage.alt = item['placeName'];
+  cardElement.querySelector('.element__title').textContent = item.name;
+  cardElement.querySelector('.element__like-value').textContent = item.likes.length;
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
+  cardElement.id = item._id;
   return cardElement
 };
 
-// функция добавления новой карточки в DOM
+// функция добавления новой карточки в конец node
 function prependCard(item) {
   const newElement = createCard(item)
   elements.prepend(newElement);
+};
+
+// функция добавления новой карточки в начало node
+function appendCard(item) {
+  const newElement = createCard(item)
+  elements.append(newElement);
 };
 
 // установка обработчиков на любую карточку
@@ -56,4 +63,4 @@ elements.addEventListener('click', function(evt) {
   }
 });
 
-export {initialCards, prependCard};
+export {appendCard, prependCard};
