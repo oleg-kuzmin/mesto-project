@@ -21,7 +21,7 @@ import {
 
 import {validationConfig, hideInputError, submitDisabled} from './validate.js';
 import {prependCard} from './card.js';
-import {patchProfile, patchAvatar} from './api.js';
+import {patchProfile, patchAvatar, addCardToServer} from './api.js';
 
 // обработчики - закрытие попапа при нажатии крестика или оверлея
 popups.forEach((popup) => {
@@ -118,9 +118,11 @@ placeForm.addEventListener('submit', savePlace);
 function savePlace(evt) {
   evt.preventDefault();
   const item = {};
-  item['placeName'] = placeName.value;
-  item['placeUrl'] = placeUrl.value;
-  prependCard(item);
+  item.name = placeName.value;
+  item.link = placeUrl.value;
+  addCardToServer(item).then((item)=> {
+    prependCard(item);
+  })
   evt.target.reset();
   closePopup(popupPlace);
 };

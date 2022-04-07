@@ -73,11 +73,21 @@ function patchAvatar() {
   .then(onResponse)
 }
 
+function addCardToServer(item) {
+  return fetch(config.urlCards, {
+    method: 'POST',
+    headers: config.headers,
+    body: JSON.stringify(item) 
+  })
+  .then(onResponse)
+}
+
 
 export {
   getAllCardsFromServer, 
   getProfile, 
   profileId, 
   patchProfile,
-  patchAvatar
+  patchAvatar,
+  addCardToServer
 };
