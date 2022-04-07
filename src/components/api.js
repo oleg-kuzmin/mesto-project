@@ -1,3 +1,4 @@
+import {profileTitle, profileSubtitle} from './variables.js';
 const config = {
   urlProfile: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/users/me/',
   urlCards: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/cards/',
@@ -6,6 +7,7 @@ const config = {
     'Content-type': 'application/json'
   },  
 }
+
 
 fetch(config.urlProfile, {headers: config.headers})
   .then((res) => {
@@ -32,10 +34,18 @@ function getAllCardsFromServer() {
   .then(onResponse)
 }
 
+let profileId;
 
+function getProfile() {
+  fetch(config.urlProfile, {headers: config.headers})
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {    
+    profileTitle.textContent = data.name;
+    profileSubtitle.textContent = data.about;    
+    profileId = data._id;
+  })
+}
 
-
-
-
-
-export {getAllCardsFromServer};
+export {getAllCardsFromServer, getProfile, profileId};

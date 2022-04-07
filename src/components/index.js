@@ -1,7 +1,7 @@
 import '../pages/index.css';
 import {validationConfig, enableValidation} from './validate.js';
 import {appendCard} from './card.js';
-import {getAllCardsFromServer} from './api.js';
+import {getAllCardsFromServer, getProfile} from './api.js';
 
 // включение валидации
 enableValidation(validationConfig);
@@ -12,3 +12,5 @@ getAllCardsFromServer()
     item.forEach(appendCard)
   })
 
+// получение даных профиля  
+getProfile();

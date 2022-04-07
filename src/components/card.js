@@ -7,6 +7,7 @@ import {
 } from './variables.js';
 
 import {openPopup} from './modal.js';
+import {profileId} from './api';
 
 // функция лайка карточки
 function likeCard(evt) {
@@ -30,11 +31,15 @@ function openCardImage(evt) {
 function createCard(item) {
   const cardElement = elementTemplate.querySelector('.element').cloneNode(true);
   const cardImage = cardElement.querySelector('.element__image');
+  const cardBasketElement = cardElement.querySelector('.element__delete-button');
   cardElement.querySelector('.element__title').textContent = item.name;
   cardElement.querySelector('.element__like-value').textContent = item.likes.length;
   cardImage.src = item.link;
   cardImage.alt = item.name;
   cardElement.id = item._id;
+  if (profileId !== item.owner._id) {
+    cardBasketElement.classList.add('element__delete-button_off')
+  }
   return cardElement
 };
 
