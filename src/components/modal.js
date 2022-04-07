@@ -21,7 +21,7 @@ import {
 
 import {validationConfig, hideInputError, submitDisabled} from './validate.js';
 import {prependCard} from './card.js';
-import {patchProfile} from './api.js';
+import {patchProfile, patchAvatar} from './api.js';
 
 // обработчики - закрытие попапа при нажатии крестика или оверлея
 popups.forEach((popup) => {
@@ -81,7 +81,9 @@ avatarForm.addEventListener('submit', saveAvatar);
 // submit avatarForm
 function saveAvatar(evt) {
   evt.preventDefault();
-  avatarImage.src = avatarUrl.value;
+  patchAvatar().then(()=> {
+    avatarImage.src = avatarUrl.value;
+  })
   closePopup(popupAvatar);
 }
 

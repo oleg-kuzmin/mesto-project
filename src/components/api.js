@@ -1,7 +1,8 @@
-import {profileTitle, profileSubtitle} from './variables.js';
+import {profileTitle, profileSubtitle, avatarImage} from './variables.js';
 const config = {
   urlProfile: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/users/me/',
   urlCards: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/cards/',
+  urlAvatar: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/users/me/avatar',
   headers: {
     'Authorization': '79f162b1-a586-4458-ae35-5979e9a8f77a',
     'Content-type': 'application/json'
@@ -45,6 +46,7 @@ function getProfile() {
     profileTitle.textContent = data.name;
     profileSubtitle.textContent = data.about;    
     profileId = data._id;
+    avatarImage.src = data.avatar;
   })
 }
 
@@ -60,9 +62,22 @@ function patchProfile() {
   .then(onResponse)
 }
 
+function patchAvatar() {
+  return fetch(config.urlAvatar, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: avatarUrl.value
+    }) 
+  })
+  .then(onResponse)
+}
+
+
 export {
   getAllCardsFromServer, 
   getProfile, 
   profileId, 
-  patchProfile
+  patchProfile,
+  patchAvatar
 };
