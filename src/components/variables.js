@@ -16,6 +16,11 @@ const placeUrl = document.querySelector('#placeUrl');
 const popupImage = document.querySelector('#popup-image');  
 const popupImageFigure = document.querySelector('.popup__image');
 const popupImageCaption = document.querySelector('.popup__image-caption');
+const popupAvatar = document.querySelector('#popup-avatar');
+const avatarForm = document.querySelector('#popup__form-avatar')
+const avatarUrl = document.querySelector('#avatarUrl');
+const avatarEditButton  = document.querySelector('.profile__avatar-edit');
+const avatarImage = document.querySelector('.profile__avatar');
 const initialCards = [
   {
     placeName: 'Архыз',
@@ -62,5 +67,10 @@ export {
   popupImage,
   popupImageFigure,
   popupImageCaption,
-  initialCards
+  initialCards,
+  popupAvatar,
+  avatarForm,
+  avatarUrl,
+  avatarEditButton,
+  avatarImage
 };

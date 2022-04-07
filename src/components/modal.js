@@ -12,6 +12,11 @@ import {
   placeForm,
   placeName,
   placeUrl,
+  popupAvatar,
+  avatarForm,
+  avatarUrl,
+  avatarEditButton,
+  avatarImage
 } from './variables.js';
 
 import {validationConfig, hideInputError, submitDisabled} from './validate.js';
@@ -59,6 +64,25 @@ profileEditButton.addEventListener('click', function () {
   submitDisabled(buttonElement, validationConfig.buttonElementDisabledName);
   openPopup(popupProfile);
 });
+
+// нажатие на кнопку редактирования popupAvatar
+avatarEditButton.addEventListener('click', function () {
+  avatarUrl.value = '';
+  hideInputError(avatarForm, avatarUrl, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
+  const buttonElement = popupAvatar.querySelector('.popup__button-save');
+  submitDisabled(buttonElement, validationConfig.buttonElementDisabledName);
+  openPopup(popupAvatar);
+});
+
+// нажатие на кнопку submit avatarForm
+avatarForm.addEventListener('submit', saveAvatar);
+
+// submit avatarForm
+function saveAvatar(evt) {
+  evt.preventDefault();
+  avatarImage.src = avatarUrl.value;
+  closePopup(popupAvatar);
+}
 
 // нажатие на кнопку submit profileForm
 profileForm.addEventListener('submit', saveProfile);
