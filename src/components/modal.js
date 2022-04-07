@@ -81,10 +81,19 @@ avatarForm.addEventListener('submit', saveAvatar);
 // submit avatarForm
 function saveAvatar(evt) {
   evt.preventDefault();
-  patchAvatar().then(()=> {
-    avatarImage.src = avatarUrl.value;
-  })
-  closePopup(popupAvatar);
+  const buttonElement = popupAvatar.querySelector('.popup__button-save');
+  buttonElement.textContent = 'Сохранение...';
+  patchAvatar()
+    .then(()=> {
+      avatarImage.src = avatarUrl.value;
+    })
+    .catch((err)=> {
+      console.log(err);
+    })
+    .finally(()=> {
+      buttonElement.textContent = 'Сохранить';
+      closePopup(popupAvatar);
+    })  
 }
 
 // нажатие на кнопку submit profileForm
@@ -93,17 +102,26 @@ profileForm.addEventListener('submit', saveProfile);
 // submit profileForm
 function saveProfile(evt) {
   evt.preventDefault();
-  patchProfile().then(()=> {
-    profileTitle.textContent = profileName.value;
-    profileSubtitle.textContent = profileAboutSelf.value;
-  })
-  closePopup(popupProfile);
+  const buttonElement = popupProfile.querySelector('.popup__button-save');
+  buttonElement.textContent = 'Сохранение...';
+  patchProfile()
+    .then(()=> {
+      profileTitle.textContent = profileName.value;
+      profileSubtitle.textContent = profileAboutSelf.value;
+    })
+    .catch((err)=> {
+      console.log(err);
+    })
+    .finally(()=> {
+      buttonElement.textContent = 'Сохранить';
+      closePopup(popupProfile);
+    }) 
 }
 
 // нажатие на кнопку открытия popupPlace
 placeAddButton.addEventListener('click', function () {
   placeName.value = '';
-  placeUrl.value = '';
+  placeUrl.value = '';  
   hideInputError(popupPlace, placeName, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
   hideInputError(popupPlace, placeUrl, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
   const buttonElement = popupPlace.querySelector('.popup__button-save');
@@ -117,14 +135,26 @@ placeForm.addEventListener('submit', savePlace);
 // submit placeForm
 function savePlace(evt) {
   evt.preventDefault();
+  const buttonElement = popupPlace.querySelector('.popup__button-save');
+  buttonElement.textContent = 'Сохранение...';
   const item = {};
   item.name = placeName.value;
   item.link = placeUrl.value;
-  addCardToServer(item).then((item)=> {
-    prependCard(item);
-  })
-  evt.target.reset();
-  closePopup(popupPlace);
+  addCardToServer(item)
+    .then((item)=> {            
+      prependCard(item);
+    })
+    .catch((err)=> {
+      console.log(err);
+    })
+    .finally(()=> {
+      buttonElement.textContent = 'Создать';
+      evt.target.reset();
+      closePopup(popupPlace);
+    })
+
+  /*evt.target.reset();
+  closePopup(popupPlace);*/
 };
 
 export {openPopup, closePopup};
