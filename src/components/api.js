@@ -90,6 +90,22 @@ const removeCardFromServer = (idCard) => {
   .then(onResponse);
 };
 
+function addLikeToServer(idCard) {
+  return fetch(`${config.urlCards}likes/${idCard}`, {
+    method: 'PUT',
+    headers: config.headers,
+  })
+  .then(onResponse);
+}
+
+function removeLikeFromServer(idCard) {
+  return fetch(`${config.urlCards}likes/${idCard}`, {
+    method: 'DELETE',
+    headers: config.headers,
+  })
+  .then(onResponse);
+}
+
 export {
   getAllCardsFromServer, 
   getProfile, 
@@ -97,5 +113,7 @@ export {
   patchProfile,
   patchAvatar,
   addCardToServer,
-  removeCardFromServer
+  removeCardFromServer,
+  addLikeToServer,
+  removeLikeFromServer
 };
