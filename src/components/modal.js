@@ -21,6 +21,7 @@ import {
 
 import {validationConfig, hideInputError, submitDisabled} from './validate.js';
 import {prependCard} from './card.js';
+import {patchProfile} from './api.js';
 
 // обработчики - закрытие попапа при нажатии крестика или оверлея
 popups.forEach((popup) => {
@@ -90,8 +91,10 @@ profileForm.addEventListener('submit', saveProfile);
 // submit profileForm
 function saveProfile(evt) {
   evt.preventDefault();
-  profileTitle.textContent = profileName.value;
-  profileSubtitle.textContent = profileAboutSelf.value;
+  patchProfile().then(()=> {
+    profileTitle.textContent = profileName.value;
+    profileSubtitle.textContent = profileAboutSelf.value;
+  })
   closePopup(popupProfile);
 }
 

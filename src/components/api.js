@@ -48,4 +48,21 @@ function getProfile() {
   })
 }
 
-export {getAllCardsFromServer, getProfile, profileId};
+function patchProfile() {
+  return fetch(config.urlProfile, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      name: profileName.value,
+      about: profileAboutSelf.value
+    }) 
+  })
+  .then(onResponse)
+}
+
+export {
+  getAllCardsFromServer, 
+  getProfile, 
+  profileId, 
+  patchProfile
+};
