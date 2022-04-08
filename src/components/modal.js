@@ -1,22 +1,28 @@
 import {
-  popups,
+  popups,  
   popupProfile,
-  popupPlace,
-  profileEditButton,
-  placeAddButton,
   profileForm,
+  profileEditButton,
   profileTitle,
   profileName,
   profileSubtitle,
   profileAboutSelf,
+  profileSubmitButton,
+  popupPlace,
   placeForm,
+  placeAddButton,
   placeName,
   placeUrl,
+  placeSubmitButton,
   popupAvatar,
   avatarForm,
   avatarUrl,
   avatarEditButton,
-  avatarImage
+  avatarImage,
+  avatarSubmitButton,
+  popupImage,
+  popupImageFigure,
+  popupImageCaption,
 } from './variables.js';
 
 import {validationConfig, hideInputError, submitDisabled} from './validate.js';
@@ -61,17 +67,15 @@ profileEditButton.addEventListener('click', function () {
   profileAboutSelf.value = profileSubtitle.textContent;
   hideInputError(profileForm, profileName, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
   hideInputError(profileForm, profileAboutSelf, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
-  const buttonElement = popupProfile.querySelector('.popup__button-save');
-  submitDisabled(buttonElement, validationConfig.buttonElementDisabledName);
+  submitDisabled(profileSubmitButton, validationConfig.buttonElementDisabledName);
   openPopup(popupProfile);
 });
 
 // нажатие на кнопку редактирования popupAvatar
 avatarEditButton.addEventListener('click', function () {
-  avatarUrl.value = '';
+  avatarForm.reset();
   hideInputError(avatarForm, avatarUrl, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
-  const buttonElement = popupAvatar.querySelector('.popup__button-save');
-  submitDisabled(buttonElement, validationConfig.buttonElementDisabledName);
+  submitDisabled(avatarSubmitButton, validationConfig.buttonElementDisabledName);
   openPopup(popupAvatar);
 });
 
@@ -81,19 +85,18 @@ avatarForm.addEventListener('submit', saveAvatar);
 // submit avatarForm
 function saveAvatar(evt) {
   evt.preventDefault();
-  const buttonElement = popupAvatar.querySelector('.popup__button-save');
-  buttonElement.textContent = 'Сохранение...';
+  avatarSubmitButton.textContent = 'Сохранение...';
   patchAvatar()
-    .then(()=> {
-      avatarImage.src = avatarUrl.value;
-    })
-    .catch((err)=> {
-      console.log(err);
-    })
-    .finally(()=> {
-      buttonElement.textContent = 'Сохранить';
-      closePopup(popupAvatar);
-    })  
+  .then(()=> {
+    avatarImage.src = avatarUrl.value;
+    closePopup(popupAvatar);
+  })
+  .catch((err)=> {
+    console.log(err);
+  })
+  .finally(()=> {
+    avatarSubmitButton.textContent = 'Сохранить';      
+  })  
 }
 
 // нажатие на кнопку submit profileForm
@@ -102,30 +105,27 @@ profileForm.addEventListener('submit', saveProfile);
 // submit profileForm
 function saveProfile(evt) {
   evt.preventDefault();
-  const buttonElement = popupProfile.querySelector('.popup__button-save');
-  buttonElement.textContent = 'Сохранение...';
+  profileSubmitButton.textContent = 'Сохранение...';
   patchProfile()
-    .then(()=> {
-      profileTitle.textContent = profileName.value;
-      profileSubtitle.textContent = profileAboutSelf.value;
-    })
-    .catch((err)=> {
-      console.log(err);
-    })
-    .finally(()=> {
-      buttonElement.textContent = 'Сохранить';
-      closePopup(popupProfile);
-    }) 
+  .then(()=> {
+    profileTitle.textContent = profileName.value;
+    profileSubtitle.textContent = profileAboutSelf.value;
+    closePopup(popupProfile);
+  })
+  .catch((err)=> {
+    console.log(err);
+  })
+  .finally(()=> {
+    profileSubmitButton.textContent = 'Сохранить';
+  }) 
 }
 
 // нажатие на кнопку открытия popupPlace
 placeAddButton.addEventListener('click', function () {
-  placeName.value = '';
-  placeUrl.value = '';  
-  hideInputError(popupPlace, placeName, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
-  hideInputError(popupPlace, placeUrl, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
-  const buttonElement = popupPlace.querySelector('.popup__button-save');
-  submitDisabled(buttonElement, validationConfig.buttonElementDisabledName);
+  placeForm.reset();
+  hideInputError(placeForm, placeName, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
+  hideInputError(placeForm, placeUrl, validationConfig.inputTypeErrorName, validationConfig.errorElementActiveName);
+  submitDisabled(placeSubmitButton, validationConfig.buttonElementDisabledName);
   openPopup(popupPlace);
 });
 
@@ -135,23 +135,29 @@ placeForm.addEventListener('submit', savePlace);
 // submit placeForm
 function savePlace(evt) {
   evt.preventDefault();
-  const buttonElement = popupPlace.querySelector('.popup__button-save');
-  buttonElement.textContent = 'Сохранение...';
+  placeSubmitButton.textContent = 'Сохранение...';
   const item = {};
   item.name = placeName.value;
   item.link = placeUrl.value;
   addCardToServer(item)
-    .then((item)=> {            
-      prependCard(item);
-    })
-    .catch((err)=> {
-      console.log(err);
-    })
-    .finally(()=> {
-      buttonElement.textContent = 'Создать';
-      evt.target.reset();
-      closePopup(popupPlace);
-    })
+  .then((item)=> {            
+    prependCard(item);
+    closePopup(popupPlace); 
+  })
+  .catch((err)=> {
+    console.log(err);
+  })
+  .finally(()=> {
+    placeSubmitButton.textContent = 'Создать';
+  })
 };
 
-export {openPopup, closePopup};
+// функция открытия попапа с картинкой
+function openCardImage(cardImage) {
+  openPopup(popupImage);
+  popupImageFigure.src = cardImage.src
+  popupImageFigure.alt = cardImage.alt;
+  popupImageCaption.textContent = cardImage.alt;
+}
+
+export {openPopup, closePopup, openCardImage};

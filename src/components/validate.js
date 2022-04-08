@@ -20,7 +20,6 @@ const enableValidation = ({formElementName, inputElementName, buttonElementName,
   });
 };
 
-
 //! 2
 const setEventListeners = (formElement, inputElementName, buttonElementName, buttonElementDisabledName, inputTypeErrorName, errorElementActiveName) => {
   const inputList = Array.from(formElement.querySelectorAll(inputElementName));
@@ -33,7 +32,6 @@ const setEventListeners = (formElement, inputElementName, buttonElementName, but
     });
   });
 };
-
 
 //! 3
 const toggleButtonState = (inputList, buttonElement, buttonElementDisabledName) => {
@@ -88,4 +86,9 @@ const hideInputError = (formElement, inputElement, inputTypeErrorName, errorElem
   errorElement.textContent = '';
 };
 
-export {validationConfig, enableValidation, hideInputError, submitDisabled};
+export {
+  validationConfig, 
+  enableValidation, 
+  hideInputError, 
+  submitDisabled
+};

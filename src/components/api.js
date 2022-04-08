@@ -1,40 +1,27 @@
-import {profileTitle, profileSubtitle, avatarImage} from './variables.js';
 const config = {
-  urlProfile: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/users/me/',
-  urlCards: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/cards/',
-  urlAvatar: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/users/me/avatar',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-8',
   headers: {
     'Authorization': '79f162b1-a586-4458-ae35-5979e9a8f77a',
     'Content-type': 'application/json'
   },  
 }
 
-const onResponse = (res) => {
+const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
 }
 
 function getAllCardsFromServer() {
-  return fetch(config.urlCards, {headers: config.headers})
-  .then(onResponse)
+  return fetch(`${config.baseUrl}/cards/`, {headers: config.headers})
+  .then(checkResponse)
 }
 
-let profileId;
-
 function getProfile() {
-  fetch(config.urlProfile, {headers: config.headers})
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {    
-    profileTitle.textContent = data.name;
-    profileSubtitle.textContent = data.about;    
-    profileId = data._id;
-    avatarImage.src = data.avatar;
-  })
+  return fetch(`${config.baseUrl}/users/me`, {headers: config.headers})
+  .then(checkResponse)
 }
 
 function patchProfile() {
-  return fetch(config.urlProfile, {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
@@ -42,57 +29,56 @@ function patchProfile() {
       about: profileAboutSelf.value
     }) 
   })
-  .then(onResponse)
+  .then(checkResponse)
 }
 
 function patchAvatar() {
-  return fetch(config.urlAvatar, {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
       avatar: avatarUrl.value
     }) 
   })
-  .then(onResponse)
+  .then(checkResponse)
 }
 
 function addCardToServer(item) {
-  return fetch(config.urlCards, {
+  return fetch(`${config.baseUrl}/cards/`, {
     method: 'POST',
     headers: config.headers,
     body: JSON.stringify(item) 
   })
-  .then(onResponse)
+  .then(checkResponse)
 }
 
 const removeCardFromServer = (idCard) => {
-  return fetch(`${config.urlCards}${idCard}`, {
+  return fetch(`${config.baseUrl}/cards/${idCard}`, {
     method: 'DELETE',
     headers: config.headers,
   })
-  .then(onResponse);
+  .then(checkResponse);
 };
 
 function addLikeToServer(idCard) {
-  return fetch(`${config.urlCards}likes/${idCard}`, {
+  return fetch(`${config.baseUrl}/cards/likes/${idCard}`, {
     method: 'PUT',
     headers: config.headers,
   })
-  .then(onResponse);
+  .then(checkResponse);
 }
 
 function removeLikeFromServer(idCard) {
-  return fetch(`${config.urlCards}likes/${idCard}`, {
+  return fetch(`${config.baseUrl}/cards/likes/${idCard}`, {
     method: 'DELETE',
     headers: config.headers,
   })
-  .then(onResponse);
+  .then(checkResponse);
 }
 
 export {
-  getAllCardsFromServer, 
-  getProfile, 
-  profileId, 
+  getAllCardsFromServer,
+  getProfile,
   patchProfile,
   patchAvatar,
   addCardToServer,
