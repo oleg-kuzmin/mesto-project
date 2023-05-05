@@ -1,5 +1,5 @@
 import {
-  popups,  
+  popups,
   popupProfile,
   profileForm,
   profileEditButton,
@@ -37,7 +37,7 @@ popups.forEach((popup) => {
       }
       if (evt.target.classList.contains('popup__button-close')) {
         closePopup(popup);
-      }      
+      }
   })
 })
 
@@ -95,8 +95,8 @@ function saveAvatar(evt) {
     console.log(err);
   })
   .finally(()=> {
-    avatarSubmitButton.textContent = 'Сохранить';      
-  })  
+    avatarSubmitButton.textContent = 'Сохранить';
+  })
 }
 
 // нажатие на кнопку submit profileForm
@@ -117,7 +117,7 @@ function saveProfile(evt) {
   })
   .finally(()=> {
     profileSubmitButton.textContent = 'Сохранить';
-  }) 
+  })
 }
 
 // нажатие на кнопку открытия popupPlace
@@ -140,9 +140,9 @@ function savePlace(evt) {
   item.name = placeName.value;
   item.link = placeUrl.value;
   addCardToServer(item)
-  .then((item)=> {            
+  .then((item)=> {
     prependCard(item);
-    closePopup(popupPlace); 
+    closePopup(popupPlace);
   })
   .catch((err)=> {
     console.log(err);
