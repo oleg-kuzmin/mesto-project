@@ -97,4 +97,16 @@ const hideInputError = (form, input) => {
   span.classList.remove(validateConfig.spanInvalid);
 };
 
-export { enableValidation };
+//# 10 Сброс по умолчанию
+const resetForm = (popup) => {
+  const submitButton = popup.querySelector(validateConfig.buttonSubmit);
+  const currentForm = popup.querySelector('.popup__form');
+  const inputList = Array.from(currentForm.querySelectorAll(validateConfig.input));
+  disableButtonSubmit(submitButton);
+  inputList.forEach((input) => {
+    hideInputError(currentForm, input);
+  });
+  currentForm.reset();
+};
+
+export { enableValidation, resetForm };

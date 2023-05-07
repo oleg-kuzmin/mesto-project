@@ -18,23 +18,23 @@ const getProfile = () => {
   return fetch(`${config.baseUrl}/users/me`, { headers: config.headers }).then(checkResponse);
 };
 
-const patchProfile = () => {
+const patchProfile = (inputProfileName, inputProfileAboutSelf) => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
-      name: profileName.value,
-      about: profileAboutSelf.value,
+      name: inputProfileName.value,
+      about: inputProfileAboutSelf.value,
     }),
   }).then(checkResponse);
 };
 
-const patchAvatar = () => {
+const patchAvatar = (inputAvatarUrl) => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
-      avatar: avatarUrl.value,
+      avatar: inputAvatarUrl.value,
     }),
   }).then(checkResponse);
 };
