@@ -6,7 +6,7 @@ const config = {
   },
 };
 
-const checkResponse = (res) => {
+const checkResponse = res => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
 
@@ -29,7 +29,7 @@ const patchProfile = (inputProfileName, inputProfileAboutSelf) => {
   }).then(checkResponse);
 };
 
-const patchAvatar = (inputAvatarUrl) => {
+const patchAvatar = inputAvatarUrl => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
@@ -39,7 +39,7 @@ const patchAvatar = (inputAvatarUrl) => {
   }).then(checkResponse);
 };
 
-const addCardToServer = (card) => {
+const addCardToServer = card => {
   return fetch(`${config.baseUrl}/cards/`, {
     method: 'POST',
     headers: config.headers,
@@ -47,21 +47,21 @@ const addCardToServer = (card) => {
   }).then(checkResponse);
 };
 
-const removeCardFromServer = (idCard) => {
+const removeCardFromServer = idCard => {
   return fetch(`${config.baseUrl}/cards/${idCard}`, {
     method: 'DELETE',
     headers: config.headers,
   }).then(checkResponse);
 };
 
-const addLikeToServer = (idCard) => {
+const addLikeToServer = idCard => {
   return fetch(`${config.baseUrl}/cards/likes/${idCard}`, {
     method: 'PUT',
     headers: config.headers,
   }).then(checkResponse);
 };
 
-const removeLikeFromServer = (idCard) => {
+const removeLikeFromServer = idCard => {
   return fetch(`${config.baseUrl}/cards/likes/${idCard}`, {
     method: 'DELETE',
     headers: config.headers,

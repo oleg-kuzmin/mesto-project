@@ -21,7 +21,7 @@ const enableValidation = () => {
   });
 };
 
-//# 2. Функция, которая примет параметром элемент формы и добавит её полям нужные обработчики
+//# 2. Функция, которая принимае параметром форму и добавляет её полям нужные обработчики
 const setEventListeners = form => {
   //* находим все поля input внутри формы с указанным классом, сделаем из них массив
   const inputList = Array.from(form.querySelectorAll(validateConfig.input));
@@ -41,7 +41,7 @@ const setEventListeners = form => {
   });
 };
 
-//# 3. Функция принимает массив полей ввода и элемент кнопки, состояние которой нужно менять
+//# 3. Функция принимает массив полей ввода и submit, состояние которого нужно менять
 const checkButtonSubmit = (inputList, buttonSubmit) => {
   if (hasInvalidInput(inputList)) {
     disableButtonSubmit(buttonSubmit);
@@ -50,13 +50,13 @@ const checkButtonSubmit = (inputList, buttonSubmit) => {
   }
 };
 
-//# 4. Функция выключает кнопку
+//# 4. Функция выключает submit
 const disableButtonSubmit = button => {
   button.disabled = true;
   button.classList.add(validateConfig.buttonSubmitInvalid);
 };
 
-//# 5. Функция включает кнопку
+//# 5. Функция включает submit
 const enableButtonSubmit = button => {
   button.disabled = false;
   button.classList.remove(validateConfig.buttonSubmitInvalid);

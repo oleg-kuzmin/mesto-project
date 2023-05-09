@@ -1,5 +1,5 @@
-import { elements } from "../components/variables";
-import { profileId } from "../components/index";
+import { elements } from '../components/variables';
+import { profileId } from '../components/index';
 
 const createCard = cardObject => {
   const cardTemplate = document.querySelector('#elementTemplate').content;
@@ -27,6 +27,7 @@ const createCard = cardObject => {
 
 const prependCardToDom = card => {
   const newCard = createCard(card);
+  newCard.classList.add('animation__backInDown');
   elements.prepend(newCard);
 };
 

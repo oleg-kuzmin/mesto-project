@@ -46,3 +46,6 @@
 @import url('../blocks/popup/__image/popup__image.css');
 @import url('../blocks/popup/__image-caption/popup__image-caption.css');
 @import url('../blocks/popup/_place-image/popup_place-image.css');
+@import url('../blocks/animation/animation.css');
+@import url('../blocks/animation/backInDown/animation__backInDown.css');
+@import url('../blocks/animation/fadeOut/animation__fadeOut.css');

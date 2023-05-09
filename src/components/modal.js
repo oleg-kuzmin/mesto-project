@@ -1,5 +1,5 @@
-import { handleButtonClose, handleOverlayClose, handleEscKeyboard } from "../components/index";
-import { resetForm } from "../components/validate";
+import { handleButtonClose, handleOverlayClose, handleEscKeyboard } from '../components/index';
+import { resetForm } from '../components/validate';
 
 const openPopup = popup => {
   popup.classList.add('popup_opened');

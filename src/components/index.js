@@ -33,48 +33,55 @@ enableValidation();
 
 //# функция показа страницы
 const showPage = () => {
-  const page = document.querySelector('.page'); // объявляем переменную всей страницы
-  page.classList.remove('page_disabled'); // удаляем класс, чтобы показать страницу
+  const page = document.querySelector('.page');
+  page.classList.remove('page_disabled');
 };
 
 //# получаем все необходимые промисы
 Promise.all([getProfile(), getAllCardsFromServer()])
-  .then(([data, item]) => {
-    profileTitle.textContent = data.name;
-    profileSubtitle.textContent = data.about;
-    profileAvatar.src = data.avatar;
-    profileId = data._id;
-    item.forEach(appendCardToDom);
+  .then(([profile, cards]) => {
+    profileTitle.textContent = profile.name;
+    profileSubtitle.textContent = profile.about;
+    profileAvatar.src = profile.avatar;
+    profileId = profile._id;
+    cards.forEach(appendCardToDom);
     showPage();
   })
   .catch(err => {
     console.error(err);
   });
 
+//# функция для обработчика - нажатие на крестик
 const handleButtonClose = evt => {
   if (evt.target.classList.contains('popup__button-close')) {
     closePopup();
   }
 };
 
+//# функция для обработчика - нажатие на оверлей
 const handleOverlayClose = evt => {
   if (evt.target.classList.contains('popup_opened')) {
     closePopup();
   }
 };
 
+//# функция для обработчика - нажатие на кнопку Escape
 const handleEscKeyboard = evt => {
   if (evt.code === 'Escape') {
     closePopup();
   }
 };
 
+//# функция для обработчика - нажатие на корзинку
 const handleDeleteButton = evt => {
   if (evt.target.classList.contains('element__delete-button') && !evt.target.classList.contains('element__delete-button_off')) {
     const currentCard = evt.target.closest('.element');
     removeCardFromServer(currentCard.id)
       .then(() => {
-        currentCard.remove();
+        currentCard.classList.add('animation__fadeOut');
+        setTimeout(() => {
+          currentCard.remove();
+        }, 400);
       })
       .catch(err => {
         console.error(err);
@@ -82,7 +89,7 @@ const handleDeleteButton = evt => {
   }
 };
 
-//#
+//# функция для обработчика - нажатие на лайк
 const handleLikeButton = evt => {
   if (evt.target.classList.contains('element__like')) {
     const currentCard = evt.target.closest('.element');
@@ -108,8 +115,8 @@ const handleLikeButton = evt => {
   }
 };
 
-//#
-const handleImageClick = evt => {
+//# функция для обработчика - нажатие на картинку
+const handleImage = evt => {
   if (evt.target.classList.contains('element__image')) {
     popupPicture.src = evt.target.src;
     popupPicture.alt = evt.target.src;
@@ -118,31 +125,33 @@ const handleImageClick = evt => {
   }
 };
 
-const handleAvatarClick = () => {
+//# функция для обработчика - нажатие на аватар
+const handlePopupAvatar = () => {
   openPopup(popupAvatar);
 };
 
+//# функция для обработчика - нажатие на кнопку редактирования профиля
+const handlePopupProfile = () => {
+  inputProfileName.value = profileTitle.textContent;
+  inputProfileAboutSelf.value = profileSubtitle.textContent;
+  openPopup(popupProfile);
+};
+
+//# функция для обработчика - нажатие на кнопку добавления новой карточки
+const handlePopupPlace = () => {
+  openPopup(popupPlace);
+};
+
+//# устанавливаем слушатели
 document.addEventListener('click', handleDeleteButton);
 document.addEventListener('click', handleLikeButton);
 formAvatar.addEventListener('submit', submitFormAvatar);
 formProfile.addEventListener('submit', submitFormProfile);
 formPlace.addEventListener('submit', submitFormPlace);
-document.addEventListener('click', handleImageClick);
+document.addEventListener('click', handleImage);
+buttonPopupAvatar.addEventListener('click', handlePopupAvatar);
+buttonPopupProfile.addEventListener('click', handlePopupProfile);
+buttonPopupPlace.addEventListener('click', handlePopupPlace);
 
-buttonPopupAvatar.addEventListener('click', () => {
-  openPopup(popupAvatar);
-});
-
-// buttonPopupAvatar.addEventListener('click', handleAvatarClick);
-
-buttonPopupProfile.addEventListener('click', () => {
-  inputProfileName.value = profileTitle.textContent;
-  inputProfileAboutSelf.value = profileSubtitle.textContent;
-  openPopup(popupProfile);
-});
-
-buttonPopupPlace.addEventListener('click', () => {
-  openPopup(popupPlace);
-});
-
+//# экспорт для других модулей
 export { profileId, handleButtonClose, handleOverlayClose, handleEscKeyboard };

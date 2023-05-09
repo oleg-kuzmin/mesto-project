@@ -1,0 +1,18 @@
+@keyframes backInDown {
+  0% {
+    -webkit-transform: translateY(-1200px);
+    transform: translateY(-1200px);
+    /* opacity: 0.5; */
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    /* opacity: 1; */
+  }
+}
+
+.animation__backInDown {
+  animation-name: backInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
