@@ -10,12 +10,9 @@ import {
   removeLikeFromServer,
 } from '../components/api';
 import { enableValidation, resetForm } from '../components/validate';
+import { profileTitle, profileSubtitle, profileAvatar } from '../components/variables.js';
 
-//#
 let profileId;
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
-const profileAvatar = document.querySelector('.profile__avatar');
 
 //#
 enableValidation();
@@ -36,7 +33,7 @@ Promise.all([getProfile(), getAllCardsFromServer()])
     item.forEach(appendCardToDom);
     showPage();
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
   });
 
@@ -57,33 +54,33 @@ const inputPlaceName = document.forms.formPlace.placeName;
 const inputPlaceUrl = document.forms.formPlace.placeUrl;
 
 //#
-const handleButtonClose = (evt) => {
+const handleButtonClose = evt => {
   if (evt.target.classList.contains('popup__button-close')) {
     closePopup();
   }
 };
 
-const handleOverlayClose = (evt) => {
+const handleOverlayClose = evt => {
   if (evt.target.classList.contains('popup_opened')) {
     closePopup();
   }
 };
 
-const handleEscKeyboard = (evt) => {
+const handleEscKeyboard = evt => {
   if (evt.code === 'Escape') {
     closePopup();
   }
 };
 
 //#
-const handleDeleteButton = (evt) => {
+const handleDeleteButton = evt => {
   if (evt.target.classList.contains('element__delete-button') && !evt.target.classList.contains('element__delete-button_off')) {
     const currentCard = evt.target.closest('.element');
     removeCardFromServer(currentCard.id)
       .then(() => {
         currentCard.remove();
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
   }
@@ -92,27 +89,27 @@ const handleDeleteButton = (evt) => {
 document.addEventListener('click', handleDeleteButton);
 
 //#
-const handleLikeButton = (evt) => {
+const handleLikeButton = evt => {
   if (evt.target.classList.contains('element__like')) {
     const currentCard = evt.target.closest('.element');
     const likeValue = currentCard.querySelector('.element__like-value');
 
     if (evt.target.classList.contains('element__like_active')) {
       removeLikeFromServer(currentCard.id)
-        .then((res) => {
+        .then(res => {
           likeValue.textContent = res.likes.length;
           evt.target.classList.remove('element__like_active');
         })
-        .catch((res) => console.error(res));
+        .catch(res => console.error(res));
 
       evt.target.classList.remove('element__like_active');
     } else {
       addLikeToServer(currentCard.id)
-        .then((res) => {
+        .then(res => {
           likeValue.textContent = res.likes.length;
           evt.target.classList.add('element__like_active');
         })
-        .catch((res) => console.error(res));
+        .catch(res => console.error(res));
     }
   }
 };
@@ -120,7 +117,7 @@ const handleLikeButton = (evt) => {
 document.addEventListener('click', handleLikeButton);
 
 //#
-const openPopup = (popup) => {
+const openPopup = popup => {
   popup.classList.add('popup_opened');
   document.addEventListener('click', handleButtonClose);
   document.addEventListener('mousedown', handleOverlayClose);
@@ -158,18 +155,18 @@ const formAvatar = document.forms.formAvatar;
 const formProfile = document.forms.formProfile;
 const formPlace = document.forms.formPlace;
 
-const loadingIsProcess = (evt) => {
+const loadingIsProcess = evt => {
   const buttonSubmit = evt.target.querySelector('.popup__button-save');
   buttonSubmit.textContent = 'Сохранение...';
 };
 
-const loadingIsEnd = (evt) => {
+const loadingIsEnd = evt => {
   const buttonSubmit = evt.target.querySelector('.popup__button-save');
   buttonSubmit.textContent = 'Сохранить';
 };
 
 //#
-const submitFormAvatar = (evt) => {
+const submitFormAvatar = evt => {
   evt.preventDefault();
   loadingIsProcess(evt);
   patchAvatar(inputAvatarUrl)
@@ -177,7 +174,7 @@ const submitFormAvatar = (evt) => {
       profileAvatar.src = inputAvatarUrl.value;
       closePopup();
     })
-    .catch((res) => console.error(res))
+    .catch(res => console.error(res))
     .finally(() => {
       setTimeout(loadingIsEnd, 300, evt);
     });
@@ -186,7 +183,7 @@ const submitFormAvatar = (evt) => {
 formAvatar.addEventListener('submit', submitFormAvatar);
 
 //#
-const submitFormProfile = (evt) => {
+const submitFormProfile = evt => {
   evt.preventDefault();
   loadingIsProcess(evt);
   patchProfile(inputProfileName, inputProfileAboutSelf)
@@ -195,7 +192,7 @@ const submitFormProfile = (evt) => {
       profileSubtitle.textContent = inputProfileAboutSelf.value;
       closePopup();
     })
-    .catch((res) => console.error(res))
+    .catch(res => console.error(res))
     .finally(() => {
       setTimeout(loadingIsEnd, 300, evt);
     });
@@ -206,7 +203,7 @@ formProfile.addEventListener('submit', submitFormProfile);
 //#
 
 //#
-const createCard = (cardObject) => {
+const createCard = cardObject => {
   const cardTemplate = document.querySelector('#elementTemplate').content;
   const newCard = cardTemplate.querySelector('.element').cloneNode(true);
   const newcardTitle = newCard.querySelector('.element__title');
@@ -224,7 +221,7 @@ const createCard = (cardObject) => {
     newcardDeleteButton.classList.remove('element__delete-button_off');
   }
 
-  cardObject.likes.forEach((element) => {
+  cardObject.likes.forEach(element => {
     if (profileId === element._id) {
       newCardLike.classList.add('element__like_active');
     }
@@ -237,29 +234,29 @@ const createCard = (cardObject) => {
 const elements = document.querySelector('.elements');
 
 //#
-const prependCardToDom = (card) => {
+const prependCardToDom = card => {
   const newCard = createCard(card);
   elements.prepend(newCard);
 };
 
-const appendCardToDom = (card) => {
+const appendCardToDom = card => {
   const newCard = createCard(card);
   elements.append(newCard);
 };
 
 //#
-const submitFormPlace = (evt) => {
+const submitFormPlace = evt => {
   evt.preventDefault();
   loadingIsProcess(evt);
   const newCard = {};
   newCard.name = inputPlaceName.value;
   newCard.link = inputPlaceUrl.value;
   addCardToServer(newCard)
-    .then((res) => {
+    .then(res => {
       prependCardToDom(res);
       closePopup();
     })
-    .catch((err) => {
+    .catch(err => {
       console.error(err);
     })
     .finally(() => {
@@ -274,15 +271,11 @@ const popupPicture = document.querySelector('.popup__image');
 const popupPicturecaption = document.querySelector('.popup__image-caption');
 
 //#
-const handleImageClick = (evt) => {
+const handleImageClick = evt => {
   if (evt.target.classList.contains('element__image')) {
-
-    console.log(popupPicture);
-    console.log(popupPicturecaption);
-
-    console.log(evt.target.src);
-    console.log(evt.target);
-
+    popupPicture.src = evt.target.src;
+    popupPicture.alt = evt.target.src;
+    popupPicturecaption.textContent = evt.target.alt;
     openPopup(popupImage);
   }
 };
