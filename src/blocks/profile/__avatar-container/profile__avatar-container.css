@@ -1,9 +1,17 @@
 .profile__avatar-container {
   display: flex;
   position: relative;
-  transition: opacity .5s;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  /* transition: opacity .4s; */
 }
 
 .profile__avatar-container:hover .profile__avatar {
-  opacity: .2;
+  opacity: .4;
+}
+
+.profile__avatar-container:hover {
+  /* cursor: pointer; */
+  /* opacity: .2; */
 }

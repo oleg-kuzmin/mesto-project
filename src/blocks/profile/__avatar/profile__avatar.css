@@ -1,9 +1,10 @@
 .profile__avatar {
   width: 120px;
   height: 120px;
-  border-radius: 50%;
-  transition: opacity .5s;
   object-fit: cover;
+  border-radius: 50%;
+  transform: translateZ(0);
+  transition: opacity .4s;
 }
 @media screen and (max-width: 710px) {
   .profile__avatar {
