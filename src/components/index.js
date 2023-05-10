@@ -35,22 +35,23 @@ enableValidation();
 
 //# функция показа страницы
 const showPage = () => {
-  const page = document.querySelector('.page');
-  page.classList.remove('page_disabled');
+  const page = document.querySelector('.page'); // находим элемент страницы
+  page.classList.remove('page_disabled'); // удаляем класс для показа страницы
 };
 
 //# получаем все необходимые промисы
-Promise.all([getProfile(), getAllCardsFromServer()])
+Promise.all([getProfile(), getAllCardsFromServer()]) // делаем 2 fetchа
+  // получаем данные профиля и карточек
   .then(([profile, cards]) => {
-    profileTitle.textContent = profile.name;
-    profileSubtitle.textContent = profile.about;
-    profileAvatar.src = profile.avatar;
-    profileId = profile._id;
-    cards.forEach(appendCardToDom);
-    showPage();
+    profileTitle.textContent = profile.name; // присваиваем "имя" профиля на странице
+    profileSubtitle.textContent = profile.about; // присваиваем "профессию" профиля на странице
+    profileAvatar.src = profile.avatar; // присваиваем "аватар" профиля на странице
+    profileId = profile._id; // запоминаем id для дальнейшего использования
+    cards.forEach(appendCardToDom); // проходим по массиву cards колбеком, добавляющим карточки на страницу
+    showPage(); // теперь страницу можно отображать
   })
   .catch(err => {
-    console.error(err);
+    console.error(err); // отображем ошибку если не получили данные
   });
 
 //# функция для обработчика - нажатие на крестик
@@ -76,28 +77,29 @@ const handleEscKeyboard = evt => {
 
 //# функция удаления карточки
 const deleteCard = currentCard => {
-  removeCardFromServer(currentCard.id)
+  removeCardFromServer(currentCard.id) // передаем функции карточку с нужным id
     .then(() => {
-      closePopup(popupDelete);
-      currentCard.classList.add('animation__fadeOut');
+      closePopup(popupDelete); // закрываем модальное окно
+      currentCard.classList.add('animation__fadeOut'); // анимация удаления карточки (1000 мс)
       setTimeout(() => {
-        currentCard.remove();
-      }, 300);
+        currentCard.remove(); // через 700 мс после начала анимации отработаем убирание элемента из dom
+      }, 700);
     })
     .catch(err => {
-      console.error(err);
+      console.error(err); // отображем ошибку если не получили данные
     });
 };
 
 //# функция для обработчика - нажатие на корзинку
 const handleDeleteButton = evt => {
+  //* если evt.target содержит корзинку и не содержит выключенную корзинку (дополнительная страховка)
   if (evt.target.classList.contains('element__delete-button') && !evt.target.classList.contains('element__delete-button_off')) {
-    const currentCard = evt.target.closest('.element');
-    openPopup(popupDelete);
+    const currentCard = evt.target.closest('.element'); // ищем ближайщего родителя, т.е. текущую карточку
+    openPopup(popupDelete); // открываем модальное окно
     deleteCardConfirm.addEventListener(
       'click',
       () => {
-        deleteCard(currentCard);
+        deleteCard(currentCard); // добавляем однократый слушатель - удаление карточки после клика на кнопку ДА
       },
       { once: true }
     );
@@ -105,7 +107,7 @@ const handleDeleteButton = evt => {
       'keydown',
       evt => {
         if (evt.key === 'Enter') {
-          deleteCard(currentCard);
+          deleteCard(currentCard); // добавляем однократый слушатель - удаление карточки после клика на ENTER
         }
       },
       { once: true }
@@ -116,25 +118,25 @@ const handleDeleteButton = evt => {
 //# функция для обработчика - нажатие на лайк
 const handleLikeButton = evt => {
   if (evt.target.classList.contains('element__like')) {
-    const currentCard = evt.target.closest('.element');
-    const likeValue = currentCard.querySelector('.element__like-value');
+    const currentCard = evt.target.closest('.element'); // ищем ближайщего родителя, т.е. текущую карточку
+    const likeValue = currentCard.querySelector('.element__like-value'); // ищем количество лайков на текущей карточке
 
+    //* если лайк активный
     if (evt.target.classList.contains('element__like_active')) {
-      removeLikeFromServer(currentCard.id)
+      removeLikeFromServer(currentCard.id) // передаем функции карточку с нужным id
         .then(res => {
-          likeValue.textContent = res.likes.length;
-          evt.target.classList.remove('element__like_active');
+          likeValue.textContent = res.likes.length; // меняем количество лайков, после подтверждения с сервера
+          evt.target.classList.remove('element__like_active'); // делаем лайк неактивным
         })
-        .catch(res => console.error(res));
-
-      evt.target.classList.remove('element__like_active');
+        .catch(err => console.error(err)); // отображем ошибку если не получили данные
+      //* если лайк не активный
     } else {
-      addLikeToServer(currentCard.id)
+      addLikeToServer(currentCard.id) // передаем функции карточку с нужным id
         .then(res => {
-          likeValue.textContent = res.likes.length;
-          evt.target.classList.add('element__like_active');
+          likeValue.textContent = res.likes.length; // меняем количество лайков, после подтверждения с сервера
+          evt.target.classList.add('element__like_active'); // делаем лайк активным
         })
-        .catch(res => console.error(res));
+        .catch(err => console.error(err)); // отображем ошибку если не получили данные
     }
   }
 };
@@ -142,10 +144,10 @@ const handleLikeButton = evt => {
 //# функция для обработчика - нажатие на картинку
 const handleImage = evt => {
   if (evt.target.classList.contains('element__image')) {
-    popupPicture.src = evt.target.src;
-    popupPicture.alt = evt.target.src;
-    popupPicturecaption.textContent = evt.target.alt;
-    openPopup(popupImage);
+    popupPicture.src = evt.target.src; // присваиваем картинке в модальном окне нужный src
+    popupPicture.alt = evt.target.src; // присваиваем картинке в модальном окне нужный alt
+    popupPicturecaption.textContent = evt.target.alt; // присваиваем подписи в модальном окне нужный textContent
+    openPopup(popupImage); // теперь можно открыть модальное окно
   }
 };
 
@@ -156,9 +158,9 @@ const handlePopupAvatar = () => {
 
 //# функция для обработчика - нажатие на кнопку редактирования профиля
 const handlePopupProfile = () => {
-  inputProfileName.value = profileTitle.textContent;
-  inputProfileAboutSelf.value = profileSubtitle.textContent;
-  openPopup(popupProfile);
+  inputProfileName.value = profileTitle.textContent; // присваиваем input в форме нужное значение (такое же как на странице)
+  inputProfileAboutSelf.value = profileSubtitle.textContent; // присваиваем input в форме нужное значение (такое же как на странице)
+  openPopup(popupProfile); // теперь можно открыть модальное окно
 };
 
 //# функция для обработчика - нажатие на кнопку добавления новой карточки
