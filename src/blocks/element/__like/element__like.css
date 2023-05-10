@@ -1,13 +1,24 @@
 .element__like {
   width: 22px;
   height: 19px;
-  background-color: rgba(0, 0, 0 , 0);
+  background-color: rgba(0, 0, 0, 0);
   background-image: url('../../../images/like.svg');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-  transition: .5s;
+  transition: opacity 0.5s;
 }
+
 .element__like:hover {
   opacity: 0.5;
+}
+
+.element__like:focus {
+  outline: none;
+}
+
+.element__like:focus-visible {
+  opacity: 0.6;
+  outline: 2px solid black;
+  border-radius: 5px;
 }

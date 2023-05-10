@@ -3,7 +3,7 @@
   height: 50px;
   margin-left: auto;
   position: relative;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
   box-sizing: border-box;
   border-radius: 2px;
   background-color: #000000;
@@ -14,7 +14,7 @@
   cursor: pointer;
   padding: 0;
   margin-top: 35px;
-  transition: .5s;
+  transition: opacity 0.5s;
 }
 @media screen and (max-width: 710px) {
   .profile__add-button {
@@ -31,4 +31,10 @@
 
 .profile__add-button:focus {
   outline: none;
+}
+
+.profile__add-button:focus-visible {
+  opacity: 0.6;
+  outline: 2px solid white;
+  border-radius: 5px;
 }

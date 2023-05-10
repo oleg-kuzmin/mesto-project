@@ -10,7 +10,7 @@
   padding: 0;
   box-sizing: border-box;
   margin-top: 37px;
-  transition: .5s;
+  transition: opacity 0.5s;
 }
 @media screen and (max-width: 710px) {
   .profile__edit-button {
@@ -26,4 +26,10 @@
 
 .profile__edit-button:focus {
   outline: none;
+}
+
+.profile__edit-button:focus-visible {
+  opacity: 0.6;
+  outline: 2px solid white;
+  border-radius: 5px;
 }

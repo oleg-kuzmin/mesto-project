@@ -2,16 +2,27 @@
   width: 18px;
   height: 19px;
   padding: 0;
-  background-color: rgba(0, 0, 0 , 0);
+  background-color: rgba(0, 0, 0, 0);
   background-image: url('../../../images/delete-button.svg');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-  transition: .5s;
+  transition: opacity 0.5s;
   position: absolute;
   top: 20px;
   right: 20px;
 }
+
 .element__delete-button:hover {
   opacity: 0.5;
+}
+
+.element__delete-button:focus {
+  outline: none;
+}
+
+.element__delete-button:focus {
+  opacity: 0.6;
+  outline: 2px solid white;
+  border-radius: 5px;
 }
