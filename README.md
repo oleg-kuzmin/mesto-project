@@ -1,6 +1,7 @@
-# Learning project: 04. mesto-project (JS-application, adaptive rubber layout)
+# Learning project: mesto-project (JS-application, adaptive rubber layout)
 
 Adaptive for screen resolution: 320px/ 1280px
+In this project, you can add beautiful places. Put likes. Delete your places. Each user has its own id. The server is made by Yandex.
 
 ### technologies
 
