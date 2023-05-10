@@ -19,6 +19,8 @@ import {
   formPlace,
   popupPicture,
   popupPicturecaption,
+  popupDelete,
+  deleteCardConfirm,
 } from '../components/variables';
 
 import { appendCardToDom } from '../components/card';
@@ -72,20 +74,42 @@ const handleEscKeyboard = evt => {
   }
 };
 
+//# функция удаления карточки
+const deleteCard = currentCard => {
+  removeCardFromServer(currentCard.id)
+    .then(() => {
+      closePopup(popupDelete);
+      currentCard.classList.add('animation__fadeOut');
+      setTimeout(() => {
+        currentCard.remove();
+      }, 300);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+};
+
 //# функция для обработчика - нажатие на корзинку
 const handleDeleteButton = evt => {
   if (evt.target.classList.contains('element__delete-button') && !evt.target.classList.contains('element__delete-button_off')) {
     const currentCard = evt.target.closest('.element');
-    removeCardFromServer(currentCard.id)
-      .then(() => {
-        currentCard.classList.add('animation__fadeOut');
-        setTimeout(() => {
-          currentCard.remove();
-        }, 400);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    openPopup(popupDelete);
+    deleteCardConfirm.addEventListener(
+      'click',
+      () => {
+        deleteCard(currentCard);
+      },
+      { once: true }
+    );
+    document.addEventListener(
+      'keydown',
+      evt => {
+        if (evt.key === 'Enter') {
+          deleteCard(currentCard);
+        }
+      },
+      { once: true }
+    );
   }
 };
 

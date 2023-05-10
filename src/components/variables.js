@@ -19,3 +19,5 @@ export const formProfile = document.forms.formProfile;
 export const formPlace = document.forms.formPlace;
 export const popupPicture = document.querySelector('.popup__image');
 export const popupPicturecaption = document.querySelector('.popup__image-caption');
+export const popupDelete = document.querySelector('#popupDelete');
+export const deleteCardConfirm = document.querySelector('#deleteCardConfirm');

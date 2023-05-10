@@ -1,23 +1,22 @@
-# Проект: Mesto
+# Learning project: 04. mesto-project (JS-application, adaptive rubber layout)
 
-### Обзор
-* Интро
-* Технологии
-* Figma
-* Github
+Adaptive for screen resolution: 320px/ 1280px
 
-**Интро**
+### technologies
 
-Проект Mesto
+- html semantic structure
+- external fonts
+- name of classes by BEM nested
+- folder and file structure by BEM nested
+- flex
+- CSS animations using keyframes
+- use modules of JS
+- webpack (babel, autoprefixer, postcss, cssnano, deploy gh-pages)
+- api (promise, fetch)
 
-**Технологии**
-* адаптивная верстка под разрешения: 320 / 1280
-* используется grid
-* используется flex
-* используется bem nested
+**project checked by code reviewer**
 
-**Figma**
-
-* [Ссылка на макет в Figma](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript-9-sprint?node-id=0%3A1)
-
-* [Ссылка на githubPages](https://alex-dust.github.io/mesto-project/)
+- [Link to Figma 1](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+- [Link to Figma 2](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
+- [Link to Figma 3](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript-9-sprint?node-id=0%3A1)
+- [Link to Github Pages](https://oleg-kuzmin.github.io/mesto-project/)
