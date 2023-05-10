@@ -18,7 +18,7 @@ const createCard = cardObject => {
   //* проверим есть ли наши собственные карточки (если id совпадает)
   if (profileId === cardObject.owner._id) {
     const newcardDeleteButton = newCard.querySelector('.element__delete-button'); // находим кнопку удаления (корзинку)
-    newcardDeleteButton.setAttribute('disabled', true); // делаем ее выключенной
+    newcardDeleteButton.removeAttribute('disabled'); // делаем ее включенной
     newcardDeleteButton.classList.remove('element__delete-button_off'); // делаем ее невидимой
   }
 

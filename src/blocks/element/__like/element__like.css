@@ -6,8 +6,8 @@
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-  transition: opacity 0.5s;
-  transition: background-image 0.5s;
+  opacity: 1;
+  transition: opacity 0.5s, background-image 0.5s;
 }
 
 .element__like:hover {
