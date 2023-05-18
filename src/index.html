@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
   </head>
-  <body class="page page_disabled">
+  <body class="page">
     <!-- header -->
     <header class="header">
       <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Mesto-Russia" />
@@ -50,7 +50,6 @@
             <input
               class="popup__input"
               type="text"
-              id="profileName"
               name="profileName"
               placeholder="Имя"
               value=""
@@ -100,7 +99,14 @@
             <span class="popup__input-error placeName-error"></span>
           </div>
           <div class="popup__input-container">
-            <input class="popup__input" type="url" name="placeUrl" placeholder="Ссылка на картинку" autocomplete="off" required />
+            <input
+              class="popup__input"
+              type="url"
+              name="placeUrl"
+              placeholder="Ссылка на картинку"
+              autocomplete="off"
+              required
+            />
             <span class="popup__input-error placeUrl-error"></span>
           </div>
           <button class="popup__button-save" type="submit" id="placeSubmitButton">Создать</button>
@@ -126,7 +132,14 @@
         <h3 class="popup__title">Обновить аватар</h3>
         <form class="popup__form" name="formAvatar" action="#" novalidate>
           <div class="popup__input-container">
-            <input class="popup__input" type="url" name="avatarUrl" placeholder="Ссылка на картинку" autocomplete="off" required />
+            <input
+              class="popup__input"
+              type="url"
+              name="avatarUrl"
+              placeholder="Ссылка на картинку"
+              autocomplete="off"
+              required
+            />
             <span class="popup__input-error avatarUrl-error"></span>
           </div>
           <button class="popup__button-save" type="submit" id="avatarSubmitButton">Сохранить</button>

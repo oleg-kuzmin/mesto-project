@@ -21,7 +21,7 @@ const enableValidation = () => {
   });
 };
 
-//# 2. Функция, которая принимае параметром форму и добавляет её полям нужные обработчики
+//# 2. Функция, которая принимает параметром форму и добавляет её полям нужные обработчики
 const setEventListeners = form => {
   //* находим все поля input внутри формы с указанным классом, сделаем из них массив
   const inputList = Array.from(form.querySelectorAll(validateConfig.input));
