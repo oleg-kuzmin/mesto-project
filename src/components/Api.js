@@ -16,23 +16,23 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/`, { headers: this.headers }).then(this.checkResponse);
   }
 
-  patchProfile(inputProfileName, inputProfileAboutSelf) {
+  patchProfile(objectInputValues) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
-        name: inputProfileName,
-        about: inputProfileAboutSelf,
+        name: objectInputValues.profileName,
+        about: objectInputValues.profileAboutSelf,
       }),
     }).then(this.checkResponse);
   }
 
-  patchAvatar(avatarUrl) {
+  patchAvatar(objectInputValues) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
-        avatar: avatarUrl,
+        avatar: objectInputValues.avatarUrl,
       }),
     }).then(this.checkResponse);
   }
@@ -59,7 +59,7 @@ export default class Api {
     }).then(this.checkResponse);
   }
 
-  removeLikeFromServer() {
+  removeLikeFromServer(idCard) {
     return fetch(`${this.baseUrl}/cards/likes/${idCard}`, {
       method: 'DELETE',
       headers: this.headers,
