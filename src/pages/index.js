@@ -4,16 +4,11 @@ import UserInfo from '../components/UserInfo';
 import PageVisibility from '../utils/PageVisibility';
 import PopupWithForm from '../components/PopupWithForm';
 import FormValidator from '../components/FormValidator';
-import {
-  buttonPopupAvatar,
-  buttonPopupProfile,
-  buttonPopupPlace,
-  profileAvatar,
-  inputProfileName,
-  inputProfileAboutSelf,
-} from '../utils/variables';
+import Card from '../components/Card';
+import Section from '../components/Section';
+import { buttonPopupAvatar, buttonPopupProfile, buttonPopupPlace, inputProfileName, inputProfileAboutSelf } from '../utils/variables';
 
-//# создаем экземпляр класса Api
+//# Api
 const api = new Api({
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-8',
   headers: {
@@ -22,20 +17,20 @@ const api = new Api({
   },
 });
 
-//# создаем экземпляр класса UserInfo
+//# UserInfo
 const userInfo = new UserInfo({
   selectorUserName: 'profile__title',
   selectorUserProfession: 'profile__subtitle',
   selectorUserAvatar: 'profile__avatar',
 });
 
-//# создаем экземпляр класса PageVisibility
+//# PageVisibility
 const pageVisibility = new PageVisibility({
   selectorPage: 'page',
   selectorOpenClass: 'page_opened',
 });
 
-//# создаем экземпляр класса FormValidator
+//# FormValidator
 const formValidator = new FormValidator({
   selectorButtonSubmit: 'popup__button-save',
   selectorButtonSubmitInvalid: 'popup__button-save_disabled',
@@ -47,7 +42,7 @@ const formValidator = new FormValidator({
   patternMessage: 'Допустимы только латинские буквы, кириллические буквы, знаки дефиса или пробелы',
 });
 
-//# создаем экземпляр класса PopupWidthForm (Avatar)
+//# PopupWidthForm (Avatar)
 const popupAvatar = new PopupWithForm({
   idPopup: 'popupAvatar',
   selectorOpenClass: 'popup_opened',
@@ -58,7 +53,6 @@ const popupAvatar = new PopupWithForm({
       .patchAvatar(objectInputValues.avatarUrl)
       .then(response => {
         userInfo.setUserAvatar(response.avatar);
-        // profileAvatar.src = response.avatar;
         popupAvatar.close();
       })
       .catch(response => console.error(response))
@@ -70,7 +64,7 @@ const popupAvatar = new PopupWithForm({
   },
 });
 
-//# создаем экземпляр класса PopupWidthForm (Profile)
+//# PopupWidthForm (Profile)
 const popupProfile = new PopupWithForm({
   idPopup: 'popupProfile',
   selectorOpenClass: 'popup_opened',
@@ -92,6 +86,29 @@ const popupProfile = new PopupWithForm({
   },
 });
 
+//# PopupWidthForm (Mesto)
+const popupPlace = new PopupWithForm({
+  idPopup: 'popupPlace',
+  selectorOpenClass: 'popup_opened',
+  selectorForm: 'popup__form',
+  callbackApiSubmitForm: objectInputValues => {
+    console.log(objectInputValues);
+  },
+});
+
+//# Section
+const section = new Section({
+  selectorContainer: 'elements',
+  prepedAnimationClass: 'animation__backInDown',
+});
+
+//# Card
+const card = new Card({
+  idTemplate: 'elementTemplate',
+  selectorCardElement: 'element',
+  selectorCardTitle: 'element__title',
+});
+
 //# задаем переменную, чтобы потом присвоить ей id
 let userId;
 
@@ -99,15 +116,20 @@ let userId;
 formValidator.enableValidation();
 
 //# получаем все необходимые промисы (данные профиля и карточек)
-Promise.all([api.getProfile(), api.getAllCardsFromServer()]) // делаем 2 fetchа
+Promise.all([api.getProfile(), api.getAllCardsFromServer()])
   .then(([objectUser, arrayCards]) => {
-    userInfo.getUserInfo(objectUser); // получаем информацию о пользователе
-    userId = objectUser._id; // запоминаем id для дальнейшего использования
-    //* cards.forEach(appendCardToDom); проходим по массиву cards колбеком, добавляющим карточки на страницу
-    pageVisibility.showPage(); // теперь страницу можно отображать
+    userInfo.getUserInfo(objectUser);
+    userId = objectUser._id;
+
+    arrayCards.forEach(item => {
+      const newCard = card.generateCard(item, userId);
+      section.appendCardToDom(newCard);
+    });
+
+    pageVisibility.showPage();
   })
   .catch(err => {
-    console.error(err); // отображем ошибку если не получили данные
+    console.error(err);
   });
 
 //# функция для обработчика - нажатие на аватар
@@ -116,14 +138,20 @@ const handlePopupAvatar = () => {
   popupAvatar.open();
 };
 
-//# функция для обработчика - нажатие на профиль
+//# функция для обработчика - нажатие на кнопку редактирования профиля
 const handlePopupProfile = () => {
   formValidator.resetForm(popupProfile.form);
   userInfo.changeInputUserInfo(inputProfileName, inputProfileAboutSelf);
   popupProfile.open();
 };
 
+//# функция для обработчика - нажатие на кнопку создания нового места
+const handlePopupPlace = () => {
+  formValidator.resetForm(popupPlace.form);
+  popupPlace.open();
+};
+
 //# устанавливаем слушатели
 buttonPopupAvatar.addEventListener('click', handlePopupAvatar);
 buttonPopupProfile.addEventListener('click', handlePopupProfile);
-// buttonPopupPlace.addEventListener('click', handlePopupPlace);
+buttonPopupPlace.addEventListener('click', handlePopupPlace);
