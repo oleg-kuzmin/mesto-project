@@ -1,7 +1,7 @@
 import '../styles/index.css';
 import Api from '../components/Api';
 import UserInfo from '../components/UserInfo';
-import PageVisibility from '../utils/PageVisibility';
+import PageVisibility from '../components/PageVisibility';
 import PopupWithForm from '../components/PopupWithForm';
 import FormValidator from '../components/FormValidator';
 import Card from '../components/Card';
@@ -34,7 +34,7 @@ const userInfo = new UserInfo({
   selectorUserAvatar: 'profile__avatar',
 });
 
-//# PageVisibility
+//# PageVisibility (засунуть в компоненты?)
 const pageVisibility = new PageVisibility({
   selectorPage: 'page',
   selectorOpenClass: 'page_opened',
