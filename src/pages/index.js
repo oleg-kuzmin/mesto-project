@@ -66,6 +66,12 @@ const section = new Section({
   selectorAnimationDelete: 'animation__fadeOut',
 });
 
+//# задаем переменную, чтобы потом присвоить ей id
+let userId;
+
+//# включаем валидацию всех форм
+formValidator.enableValidation();
+
 //# получаем все необходимые промисы (данные профиля и карточек)
 Promise.all([api.getProfile(), api.getAllCardsFromServer()])
   .then(([objectUser, arrayCards]) => {
@@ -93,7 +99,7 @@ const popupImage = new Popup({
   selectorOpenClass: 'popup_opened',
 });
 
-//# PopupWidthForm (Avatar)
+//# PopupWithForm (Avatar)
 const popupAvatar = new PopupWithForm({
   idPopup: 'popupAvatar',
   selectorOpenClass: 'popup_opened',
@@ -115,7 +121,7 @@ const popupAvatar = new PopupWithForm({
   },
 });
 
-//# PopupWidthForm (Profile)
+//# PopupWithForm (Profile)
 const popupProfile = new PopupWithForm({
   idPopup: 'popupProfile',
   selectorOpenClass: 'popup_opened',
@@ -137,7 +143,7 @@ const popupProfile = new PopupWithForm({
   },
 });
 
-//# PopupWidthForm (Mesto)
+//# PopupWithForm (Mesto)
 const popupPlace = new PopupWithForm({
   idPopup: 'popupPlace',
   selectorOpenClass: 'popup_opened',
@@ -163,12 +169,6 @@ const popupPlace = new PopupWithForm({
   },
 });
 
-//# задаем переменную, чтобы потом присвоить ей id
-let userId;
-
-//# включаем валидацию всей страницы
-formValidator.enableValidation();
-
 //# функция для обработчика - нажатие на аватар
 const handlePopupAvatar = () => {
   formValidator.resetForm(popupAvatar.form);
@@ -190,7 +190,10 @@ const handlePopupPlace = () => {
 
 //# функция для обработчика - нажатие на корзинку
 const handleDeleteButton = evt => {
-  if (evt.target.classList.contains('element__delete-button') && !evt.target.classList.contains('element__delete-button_off')) {
+  if (
+    evt.target.classList.contains('element__delete-button') &&
+    !evt.target.classList.contains('element__delete-button_off')
+  ) {
     const currentCard = evt.target.closest('.element');
     popupDelete.open();
     deleteCardConfirm.addEventListener(
@@ -256,7 +259,7 @@ const handleLikeButton = evt => {
 };
 
 //# функция для обработчика - нажатие на картинку
-const handleImage = evt => {
+const handlePopupImage = evt => {
   if (evt.target.classList.contains('element__image')) {
     popupPicture.src = evt.target.src;
     popupPicture.alt = evt.target.src;
@@ -269,6 +272,6 @@ const handleImage = evt => {
 buttonPopupAvatar.addEventListener('click', handlePopupAvatar);
 buttonPopupProfile.addEventListener('click', handlePopupProfile);
 buttonPopupPlace.addEventListener('click', handlePopupPlace);
+document.addEventListener('click', handlePopupImage);
 document.addEventListener('click', handleDeleteButton);
 document.addEventListener('click', handleLikeButton);
-document.addEventListener('click', handleImage);
