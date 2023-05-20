@@ -47,7 +47,6 @@ const formValidator = new FormValidator({
   selectorInput: 'popup__input',
   selectorInputInvalid: 'popup__input_type_error',
   selectorSpanInvalid: 'popup__input-error_active',
-  selectorForm: 'popup__form',
   pattern: /^([а-яА-ЯёЁa-zA-Z]|\s|-|\n)+$/,
   patternMessage: 'Допустимы только латинские буквы, кириллические буквы, знаки дефиса или пробелы',
 });
@@ -57,6 +56,12 @@ const card = new Card({
   idTemplate: 'elementTemplate',
   selectorCardElement: 'element',
   selectorCardTitle: 'element__title',
+  selectorCardImage: 'element__image',
+  selectorCardLike: 'element__like',
+  selectorCardLikeActive: 'element__like_active',
+  selectorCardLikeValue: 'element__like-value',
+  selectorDeleteButton: 'element__delete-button',
+  selectorDeleteButtonOff: 'element__delete-button_off',
 });
 
 //# Section
@@ -91,18 +96,21 @@ Promise.all([api.getProfile(), api.getAllCardsFromServer()])
 const popupDelete = new Popup({
   idPopup: 'popupDelete',
   selectorOpenClass: 'popup_opened',
+  selectorButtonClose: 'popup__button-close',
 });
 
 //# Popup (Image)
 const popupImage = new Popup({
   idPopup: 'popupImage',
   selectorOpenClass: 'popup_opened',
+  selectorButtonClose: 'popup__button-close',
 });
 
 //# PopupWithForm (Avatar)
 const popupAvatar = new PopupWithForm({
   idPopup: 'popupAvatar',
   selectorOpenClass: 'popup_opened',
+  selectorButtonClose: 'popup__button-close',
   selectorForm: 'popup__form',
   callbackApiSubmitForm: objectInputValues => {
     popupAvatar.loading('Сохранение...');
@@ -125,6 +133,7 @@ const popupAvatar = new PopupWithForm({
 const popupProfile = new PopupWithForm({
   idPopup: 'popupProfile',
   selectorOpenClass: 'popup_opened',
+  selectorButtonClose: 'popup__button-close',
   selectorForm: 'popup__form',
   callbackApiSubmitForm: objectInputValues => {
     popupProfile.loading('Сохранение...');
@@ -147,6 +156,7 @@ const popupProfile = new PopupWithForm({
 const popupPlace = new PopupWithForm({
   idPopup: 'popupPlace',
   selectorOpenClass: 'popup_opened',
+  selectorButtonClose: 'popup__button-close',
   selectorForm: 'popup__form',
   callbackApiSubmitForm: objectInputValues => {
     popupPlace.loading('Сохранение...');
@@ -172,8 +182,6 @@ const popupPlace = new PopupWithForm({
 //# функция для обработчика - нажатие на аватар
 const handlePopupAvatar = () => {
   formValidator.resetForm(popupAvatar.form);
-  // avatar.classList.add('profile__avatar_type_open-popup');
-  // buttonPopupAvatar.classList.add('profile__avatar-edit_type_open-popup');
   popupAvatar.open();
 };
 

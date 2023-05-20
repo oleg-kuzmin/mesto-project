@@ -1,27 +1,31 @@
 export default class UserInfo {
+  #userName;
+  #userProfession;
+  #userAvatar;
+
   constructor(objectUser) {
-    this.userName = document.querySelector(`.${objectUser.selectorUserName}`);
-    this.userProfession = document.querySelector(`.${objectUser.selectorUserProfession}`);
-    this.userAvatar = document.querySelector(`.${objectUser.selectorUserAvatar}`);
+    this.#userName = document.querySelector(`.${objectUser.selectorUserName}`);
+    this.#userProfession = document.querySelector(`.${objectUser.selectorUserProfession}`);
+    this.#userAvatar = document.querySelector(`.${objectUser.selectorUserAvatar}`);
   }
 
   getUserInfo(objectUser) {
-    this.userName.textContent = objectUser.name;
-    this.userProfession.textContent = objectUser.about;
-    this.userAvatar.src = objectUser.avatar;
+    this.#userName.textContent = objectUser.name;
+    this.#userProfession.textContent = objectUser.about;
+    this.#userAvatar.src = objectUser.avatar;
   }
 
   changeInputUserInfo(inputProfileName, inputProfileAboutSelf) {
-    inputProfileName.value = this.userName.textContent;
-    inputProfileAboutSelf.value = this.userProfession.textContent;
+    inputProfileName.value = this.#userName.textContent;
+    inputProfileAboutSelf.value = this.#userProfession.textContent;
   }
 
   setUserInfo(profileName, profileAboutSelf) {
-    this.userName.textContent = profileName;
-    this.userProfession.textContent = profileAboutSelf;
+    this.#userName.textContent = profileName;
+    this.#userProfession.textContent = profileAboutSelf;
   }
 
   setUserAvatar(profileAvatar) {
-    this.userAvatar.src = profileAvatar;
+    this.#userAvatar.src = profileAvatar;
   }
 }

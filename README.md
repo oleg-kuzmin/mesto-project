@@ -14,6 +14,7 @@ In this project, you can add beautiful places. Put likes. Delete your places. Ea
 - use modules of JS
 - webpack (babel, autoprefixer, postcss, cssnano, deploy gh-pages)
 - api (promise, fetch)
+- oop in javascript
 
 **project checked by code reviewer**
 

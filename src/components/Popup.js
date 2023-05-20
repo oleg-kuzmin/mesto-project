@@ -1,27 +1,28 @@
 export default class Popup {
   constructor(objectPopup) {
     this.popup = document.querySelector(`#${objectPopup.idPopup}`);
-    this.selectorOpenClass = objectPopup.selectorOpenClass;
+    this.openClass = objectPopup.selectorOpenClass;
+    this.buttonClose = objectPopup.selectorButtonClose;
   }
 
   open() {
-    this.popup.classList.add(this.selectorOpenClass);
+    this.popup.classList.add(this.openClass);
     this.setEventListeners();
   }
 
   close() {
-    this.popup.classList.remove(this.selectorOpenClass);
+    this.popup.classList.remove(this.openClass);
     this.removeEventListeners();
   }
 
   _handleButtonClose = evt => {
-    if (evt.target.classList.contains('popup__button-close')) {
+    if (evt.target.classList.contains(this.buttonClose)) {
       this.close();
     }
   };
 
   _handleOverlayClose = evt => {
-    if (evt.target.classList.contains(this.selectorOpenClass)) {
+    if (evt.target.classList.contains(this.openClass)) {
       this.close();
     }
   };
