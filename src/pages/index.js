@@ -172,6 +172,8 @@ const popupPlace = new PopupWithForm({
 //# функция для обработчика - нажатие на аватар
 const handlePopupAvatar = () => {
   formValidator.resetForm(popupAvatar.form);
+  // avatar.classList.add('profile__avatar_type_open-popup');
+  // buttonPopupAvatar.classList.add('profile__avatar-edit_type_open-popup');
   popupAvatar.open();
 };
 
