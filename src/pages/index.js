@@ -34,7 +34,7 @@ const userInfo = new UserInfo({
   selectorUserAvatar: 'profile__avatar',
 });
 
-//# PageVisibility (засунуть в компоненты?)
+//# PageVisibility
 const pageVisibility = new PageVisibility({
   selectorPage: 'page',
   selectorOpenClass: 'page_opened',
