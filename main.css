@@ -4,6 +4,7 @@
 .page_opened{visibility:visible}
 .header{border:solid rgba(84,84,84,.7);border-width:0 0 1px;margin:0;padding-top:45px}@media screen and (max-width:940px){.header{padding-top:28px}}
 .header__logo{height:33px;margin-bottom:37px;width:142px}@media screen and (max-width:940px){.header__logo{height:24.4px;margin-bottom:27px;padding-left:27px;width:103.74px}}
+.header__hidden-title{-webkit-clip-path:inset(0 0 0 0);clip-path:inset(0 0 0 0);height:1px;margin:-1px;overflow:hidden;position:absolute;width:1px}
 .profile{display:flex;margin:0 auto;padding-top:40px}@media screen and (max-width:940px){.profile{padding-left:19px;padding-right:19px}}@media screen and (max-width:710px){.profile{align-items:center;flex-direction:column;justify-content:center;margin:0 19px;padding-top:43px}}
 .profile__avatar-container{align-items:center;border-radius:50%;display:flex;height:120px;justify-content:center;position:relative;width:120px;z-index:0}.profile__avatar-container:hover .profile__avatar{opacity:.4}
 .profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;transform:translateZ(0);transition:opacity .4s;width:120px}@media screen and (max-width:710px){.profile__avatar{margin:0 auto 26px}}
