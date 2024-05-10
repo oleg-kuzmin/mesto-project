@@ -1,24 +1,20 @@
-# Learning project: mesto-project (JS-application, adaptive rubber layout)
+# Mesto Project (Приложение JavaScript)
 
-Adaptive for screen resolution: 320px/ 1280px
-In this project, you can add beautiful places. Put likes. Delete your places. Each user has its own id. The server is made by Yandex.
+Приложение JavaScript для desktop и mobile. Проект похож на аналог instagram с загрузкой красивых мест для туризма. Архитектура реализована на ООП. Сборка проекта через настраиваемый webpack. Данные пользователя и данные карточек сохраняются на сервере, их можно менять, удалять, ставить лайки. Есть модальные окна с формой.
 
-### technologies
+## Технологии
 
-- html semantic structure
-- external fonts
-- name of classes by BEM nested
-- folder and file structure by BEM nested
-- flex
-- CSS animations using keyframes
-- use modules of JS
-- webpack (babel, autoprefixer, postcss, cssnano, deploy gh-pages)
-- api (promise, fetch)
-- oop in javascript
+Адаптивная/резиновая верстка Perfect Pixel по макету Figma от 320px.
+Препроцессор Sass.
+Используется Flex, Grid.
+Сборка проекта через кастомный Webpack.
+Используются дополнительно библиотеки Babel, Autoprefixer, Postcss, cssnano, Gh-pages.
+Структура файлов, наименование классов в стиле BEM.
+Архитектура приложения через классы ООП.
+REST api (get, post, delete, patch, put) для изменения данных на сервере.
+Кастомная валидация формы.
 
-**project checked by code reviewer**
+## Ссылки
 
-- [Link to Figma 1](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-- [Link to Figma 2](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
-- [Link to Figma 3](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript-9-sprint?node-id=0%3A1)
-- [Link to Github Pages](https://oleg-kuzmin.github.io/mesto-project/)
+- [Github Pages](https://oleg-kuzmin.github.io/mesto-project/)
+- [Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
