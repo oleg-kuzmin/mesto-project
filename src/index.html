@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="icon" href="<%=require('./images/horse.svg')%>" />
+    <link rel="icon" href="<%=require('./images/horse.svg')%>">
   </head>
   <body class="page">
     <!-- header -->
     <header class="header">
       <h1 class="header__hidden-title">Проект Mesto</h1>
-      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Mesto-Russia" />
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Mesto-Russia">
     </header>
 
     <main>
@@ -19,7 +19,7 @@
       <section class="profile">
         <div class="profile__avatar-container">
           <button class="profile__avatar-edit" type="button"></button>
-          <img class="profile__avatar" src="<%=require('./images/avatar-empty.png')%>" alt="Аватар профиля" />
+          <img class="profile__avatar" src="<%=require('./images/avatar-empty.png')%>" alt="Аватар профиля">
         </div>
         <div class="profile__info">
           <div class="profile__text">
@@ -59,7 +59,7 @@
               required
               minlength="2"
               maxlength="40"
-            />
+            >
             <span class="popup__input-error profileName-error"></span>
           </div>
           <div class="popup__input-container">
@@ -73,7 +73,7 @@
               required
               minlength="2"
               maxlength="200"
-            />
+            >
             <span class="popup__input-error profileAboutSelf-error"></span>
           </div>
           <button class="popup__button-save" type="submit" id="profileSubmitButton">Сохранить</button>
@@ -97,7 +97,7 @@
               required
               minlength="2"
               maxlength="30"
-            />
+            >
             <span class="popup__input-error placeName-error"></span>
           </div>
           <div class="popup__input-container">
@@ -108,7 +108,7 @@
               placeholder="Ссылка на картинку"
               autocomplete="off"
               required
-            />
+            >
             <span class="popup__input-error placeUrl-error"></span>
           </div>
           <button class="popup__button-save" type="submit" id="placeSubmitButton">Создать</button>
@@ -120,7 +120,7 @@
     <div class="popup popup_place-image" id="popupImage">
       <div class="popup__container-image">
         <figure class="popup__figure">
-          <img class="popup__image" src="#" alt="" />
+          <img class="popup__image" src="#" alt="">
           <figcaption class="popup__image-caption"></figcaption>
         </figure>
         <button class="popup__button-close" type="button"></button>
@@ -141,7 +141,7 @@
               placeholder="Ссылка на картинку"
               autocomplete="off"
               required
-            />
+            >
             <span class="popup__input-error avatarUrl-error"></span>
           </div>
           <button class="popup__button-save" type="submit" id="avatarSubmitButton">Сохранить</button>
@@ -162,7 +162,7 @@
     <template id="elementTemplate">
       <li class="element">
         <button class="element__delete-button element__delete-button_off" disabled></button>
-        <img class="element__image" src="#" alt="" />
+        <img class="element__image" src="#" alt="">
         <div class="element__text">
           <h2 class="element__title"></h2>
           <div class="element__like-container">
